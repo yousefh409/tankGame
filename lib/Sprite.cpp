@@ -19,7 +19,7 @@ Sprite::Sprite(string newUrl, sf::Vector2f newPosition, double newRotation, doub
 	sprite.setPosition(position);
 
     sf::Vector2f spriteSize(texture.getSize().x * scale, texture.getSize().y * scale);
-    sf::Vector2f center(spriteSize.x / 2, spriteSize.y / 2);
+    sf::Vector2f center(sprite.getLocalBounds().width / 2.0f, sprite.getLocalBounds().height / 2.0f);
 	sprite.setOrigin(center);
 
 	sprite.setRotation(rotation);
