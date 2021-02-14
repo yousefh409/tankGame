@@ -2,13 +2,15 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>
+#include <vector>
+#include<memory>
 
 using namespace std;
 
 class Sprite {
-protected:
+public:
     sf::Sprite sprite;
-    sf::Texture texture;
+    shared_ptr<sf::Texture> texture;
 
     string imageUrl;
     sf::Vector2f position;
@@ -18,10 +20,15 @@ protected:
 public:
     Sprite(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale);
 
+
     void setPosition(sf::Vector2f newPosition);
     void setUrl(string newUrl);
     void setRotation(double newRotation);
     void setScale(double newScale);
 
-    virtual void update(sf::RenderWindow& window, sf::Event& event);
+    sf::Vector2f getVectorRotation(double offset) const;
+
+    bool isCollision(Sprite other);
+
+    virtual void update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock);
 };

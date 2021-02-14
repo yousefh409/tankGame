@@ -1,6 +1,9 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>
+#include <vector>
+#include <memory>
+#include <cmath>
 #include "Sprite.h"
 
 using namespace std;
@@ -11,19 +14,21 @@ Sprite::Sprite(string newUrl, sf::Vector2f newPosition, double newRotation, doub
     imageUrl = newUrl;
     rotation = newRotation;
     scale = newScale;
-	texture.loadFromFile(imageUrl);
 
-	sprite = sf::Sprite(texture);
+    texture = make_shared<sf::Texture>(sf::Texture());
+	texture->loadFromFile(imageUrl);
+	sprite = sf::Sprite(*texture);
 
 	sprite.setScale(scale, scale);
 	sprite.setPosition(position);
 
-    sf::Vector2f spriteSize(texture.getSize().x * scale, texture.getSize().y * scale);
+    sf::Vector2f spriteSize(texture->getSize().x * scale, texture->getSize().y * scale);
     sf::Vector2f center(sprite.getLocalBounds().width / 2.0f, sprite.getLocalBounds().height / 2.0f);
 	sprite.setOrigin(center);
 
 	sprite.setRotation(rotation);
 }
+
 
 void Sprite::setPosition(sf::Vector2f newPosition) {
     position = newPosition;
@@ -63,6 +68,21 @@ void Sprite::setScale(double newScale) {
 
 }
 
-void Sprite::update(sf::RenderWindow& window, sf::Event& event) {
+sf::Vector2f Sprite::getVectorRotation(double offset) const {
+    double radians = (rotation + offset) * (3.14159 / 180.0);
+    sf::Vector2f rotationVector(cos(radians), sin(radians));
+
+    return rotationVector;
+
+}
+
+bool Sprite::isCollision(Sprite other) {
+    return sprite.getGlobalBounds().intersects(other.sprite.getGlobalBounds());
+}
+
+void Sprite::update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
     window.draw(sprite);
 }
+
+
+
