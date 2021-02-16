@@ -30,9 +30,19 @@ Sprite::Sprite(string newUrl, sf::Vector2f newPosition, double newRotation, doub
 }
 
 
-void Sprite::setPosition(sf::Vector2f newPosition) {
+void Sprite::setPosition(sf::Vector2f newPosition, vector<shared_ptr<Sprite>>& allSprites, bool avoidCollision) {
+    sf::Vector2f oldPosition = position;
     position = newPosition;
     sprite.setPosition(position);
+    if (avoidCollision) {
+        for (auto iter = allSprites.begin(); iter < allSprites.end(); iter++) {
+            if ((iter->get() != this) && isIntersect(iter->get())) {
+                 position = oldPosition;
+                sprite.setPosition(oldPosition);
+                return;
+            }
+        }
+    }
 
 }
 
@@ -76,8 +86,12 @@ sf::Vector2f Sprite::getVectorRotation(double offset) const {
 
 }
 
-bool Sprite::isCollision(Sprite other) {
-    return sprite.getGlobalBounds().intersects(other.sprite.getGlobalBounds());
+bool Sprite::isIntersect(Sprite* other) {
+    return sprite.getGlobalBounds().intersects(other->sprite.getGlobalBounds());
+}
+
+bool Sprite::collision(Sprite* collided) {
+    return false;
 }
 
 void Sprite::update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
