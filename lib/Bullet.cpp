@@ -6,6 +6,7 @@
 #include "Bullet.h"
 
 
+
 using namespace std;
 
 void Bullet::update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
@@ -17,8 +18,14 @@ void Bullet::update(sf::RenderWindow& window, sf::Event& event, vector<shared_pt
 
         sf::Vector2f delta = sf::Vector2f((window.getSize().x / 50.f) * rotationVector.x, (window.getSize().y / 50.f) * rotationVector.y);
 
-        setPosition(sf::Vector2f(position.x + delta.x, position.y + delta.y));
+        setPosition(sf::Vector2f(position.x + delta.x, position.y + delta.y), allSprites, false);
 
     }
     window.draw(sprite);
 }
+
+bool Bullet::collision(Sprite* collided) {
+
+    return true;
+}
+
