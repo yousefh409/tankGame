@@ -8,12 +8,14 @@
 #include "Bullet.h"
 #include "Map.h"
 #include "Wall.h"
+#include "EnemyTank.h"
+
 
 using namespace std;
 
-void initializeMap(vector<shared_ptr<Sprite>>& allSprites, int gameMap[][Maps::MAP_Y]);
-void updateWindow(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock);
-void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock);
+void initializeLevel(vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, int gameMap[][Maps::MAP_Y], vector<shared_ptr<EnemyTank>>& mapEnemyTanks);
+void updateWindow(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock);
+void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock);
 
 int main()
 {
@@ -30,7 +32,9 @@ int main()
     SecondaryTank secondaryTank = SecondaryTank("../images/tank.png", sf::Vector2f(1024.0f/5, 768.0f/5), 0, 0.4);
 
 	vector<shared_ptr<Sprite>> allSprites;
-	initializeMap(allSprites, Maps::mapOne);
+	vector<shared_ptr<EnemyTank>> enemyTanks;
+
+	initializeLevel(allSprites, enemyTanks, Maps::mapOne, Maps::mapOneEnemyTanks);
 
 	while (window.isOpen())
 	{
@@ -45,20 +49,20 @@ int main()
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) window.close();
 			default: ;
 			}
-            checkCollisions(mainTank, secondaryTank, allSprites, window, event, clock);
-            updateWindow(mainTank, secondaryTank, allSprites, window, event, clock);
+            checkCollisions(mainTank, secondaryTank, allSprites, enemyTanks, window, event, clock);
+            updateWindow(mainTank, secondaryTank, allSprites, enemyTanks, window, event, clock);
 
 		}
 
 		window.clear();
 		window.draw(background);
-		checkCollisions(mainTank, secondaryTank, allSprites, window, event, clock);
-		updateWindow(mainTank, secondaryTank, allSprites, window, event, clock);
+		checkCollisions(mainTank, secondaryTank, allSprites,enemyTanks, window, event, clock);
+		updateWindow(mainTank, secondaryTank, allSprites, enemyTanks, window, event, clock);
 		window.display();
 	}
 }
 
-void initializeMap(vector<shared_ptr<Sprite>>& allSprites, int gameMap[][Maps::MAP_Y]) {
+void initializeLevel(vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, int gameMap[][Maps::MAP_Y], vector<shared_ptr<EnemyTank>>& mapEnemyTanks) {
    for (int i = 0; i < Maps::MAP_X; i++)
     {
         for (int j = 0; j < Maps::MAP_Y; j++)
@@ -70,18 +74,23 @@ void initializeMap(vector<shared_ptr<Sprite>>& allSprites, int gameMap[][Maps::M
             }
         }
     }
+
+    enemyTanks = mapEnemyTanks;
 }
 
 
-void updateWindow(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock) {
+void updateWindow(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock) {
     mainTank.update(window, event, allSprites, clock);
     secondaryTank.update(window, event, allSprites, clock);
     for (auto iter = allSprites.begin(); iter != allSprites.end(); iter++) {
         (*iter)->update(window, event, allSprites, clock);
     }
+    for (auto iter = enemyTanks.begin(); iter != enemyTanks.end(); iter++) {
+        iter->get()->update(window, event, allSprites, clock);
+    }
 }
 
-void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock) {
+void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock) {
     for (auto iter = allSprites.begin(); iter != allSprites.end(); iter++) {
         if ((*iter)->isIntersect(&mainTank)) {
             if(mainTank.collision(iter->get())) {
@@ -102,6 +111,26 @@ void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<sh
             if((*iter)->collision(&secondaryTank)) {
                 iter = allSprites.erase(iter);
                 iter--;
+            }
+        }
+    }
+
+    for (auto iter = enemyTanks.begin(); iter != enemyTanks.end(); iter++) {
+        for (auto jter = allSprites.begin(); jter != allSprites.end(); jter++) {
+            if ((*jter)->isIntersect(iter->get())) {
+                if((*jter)->collision(iter->get()) && (*iter)->collision(jter->get())) {
+                    jter = allSprites.erase(jter);
+                    jter--;
+
+                    iter = enemyTanks.erase(iter);
+                    iter--;
+                } else if ((*jter)->collision(iter->get())) {
+                    jter = allSprites.erase(jter);
+                    jter--;
+                } else if ((*iter)->collision(jter->get())) {
+                    iter = enemyTanks.erase(iter);
+                    iter--;
+                }
             }
         }
     }
