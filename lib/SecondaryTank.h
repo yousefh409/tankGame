@@ -5,13 +5,13 @@
 #include <vector>
 #include <ctime>
 #include "Sprite.h"
-#include "MainTank.h"
+#include "Tank.h"
 
 using namespace std;
 
-class SecondaryTank : public MainTank {
+class SecondaryTank : public Tank {
 public:
-    SecondaryTank(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : MainTank(newUrl, newPosition, newRotation, newScale) {}
+    SecondaryTank(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Tank(newUrl, newPosition, newRotation, newScale) {}
     virtual bool collision(Sprite* collided) override;
     void update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) override;
 };
