@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <set>
 #include "Sprite.h"
 #include "MainTank.h"
 #include "SecondaryTank.h"
@@ -14,8 +15,11 @@
 using namespace std;
 
 void initializeLevel(vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, int gameMap[][Maps::MAP_Y], vector<shared_ptr<EnemyTank>>& mapEnemyTanks);
-void updateWindow(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock);
-void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock);
+void updateWindow(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock, set<shared_ptr<Sprite>>& destroyed);
+void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock, set<shared_ptr<Sprite>>& destroyed);
+void removeDestroyed(set<shared_ptr<Sprite>>& destroyed, sf::Clock clock);
+bool gameOver(MainTank& mainTank, vector<shared_ptr<EnemyTank>>& enemyTanks);
+void drawGameOver(sf::RenderWindow& window, bool isWin);
 
 int main()
 {
@@ -33,6 +37,7 @@ int main()
 
 	vector<shared_ptr<Sprite>> allSprites;
 	vector<shared_ptr<EnemyTank>> enemyTanks;
+	set<shared_ptr<Sprite>> destroyed;
 
 	initializeLevel(allSprites, enemyTanks, Maps::mapOne, Maps::mapOneEnemyTanks);
 
@@ -49,15 +54,24 @@ int main()
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) window.close();
 			default: ;
 			}
-            checkCollisions(mainTank, secondaryTank, allSprites, enemyTanks, window, event, clock);
-            updateWindow(mainTank, secondaryTank, allSprites, enemyTanks, window, event, clock);
-
+			if (!gameOver(mainTank, enemyTanks)) {
+                checkCollisions(mainTank, secondaryTank, allSprites, enemyTanks, window, event, clock, destroyed);
+                updateWindow(mainTank, secondaryTank, allSprites, enemyTanks, window, event, clock, destroyed);
+                removeDestroyed(destroyed, clock);
+			} else {
+                drawGameOver(window, mainTank.getHealth() > 0);
+			}
 		}
 
 		window.clear();
 		window.draw(background);
-		checkCollisions(mainTank, secondaryTank, allSprites,enemyTanks, window, event, clock);
-		updateWindow(mainTank, secondaryTank, allSprites, enemyTanks, window, event, clock);
+		if (!gameOver(mainTank, enemyTanks)) {
+            checkCollisions(mainTank, secondaryTank, allSprites,enemyTanks, window, event, clock, destroyed);
+            updateWindow(mainTank, secondaryTank, allSprites, enemyTanks, window, event, clock, destroyed);
+            removeDestroyed(destroyed, clock);
+		} else {
+            drawGameOver(window, mainTank.getHealth() > 0);
+        }
 		window.display();
 	}
 }
@@ -79,7 +93,7 @@ void initializeLevel(vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<E
 }
 
 
-void updateWindow(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock) {
+void updateWindow(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock, set<shared_ptr<Sprite>>& destroyed) {
     mainTank.update(window, event, allSprites, clock);
     secondaryTank.update(window, event, allSprites, clock);
     for (auto iter = allSprites.begin(); iter != allSprites.end(); iter++) {
@@ -88,15 +102,19 @@ void updateWindow(MainTank& mainTank, SecondaryTank& secondaryTank, vector<share
     for (auto iter = enemyTanks.begin(); iter != enemyTanks.end(); iter++) {
         iter->get()->update(window, event, allSprites, clock);
     }
+    for (auto iter = destroyed.begin(); iter != destroyed.end(); iter++) {
+        (*iter)->update(window, event, allSprites, clock);
+    }
 }
 
-void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock) {
+void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<shared_ptr<Sprite>>& allSprites, vector<shared_ptr<EnemyTank>>& enemyTanks, sf::RenderWindow& window, sf::Event& event, sf::Clock& clock, set<shared_ptr<Sprite>>& destroyed) {
     for (auto iter = allSprites.begin(); iter != allSprites.end(); iter++) {
         if ((*iter)->isIntersect(&mainTank)) {
             if(mainTank.collision(iter->get())) {
-                exit(0); //MAIN LOST
+                //MAIN LOST
             }
             if((*iter)->collision(&mainTank)) {
+                destroyed.insert(*iter);
                 iter = allSprites.erase(iter);
                 iter--;
             }
@@ -106,9 +124,10 @@ void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<sh
      for (auto iter = allSprites.begin(); iter != allSprites.end(); iter++) {
         if ((*iter)->isIntersect(&secondaryTank)) {
             if(secondaryTank.collision(iter->get())) {
-                exit(0); //SECONDARY LOST
+                //SECONDARY LOST
             }
             if((*iter)->collision(&secondaryTank)) {
+                destroyed.insert(*iter);
                 iter = allSprites.erase(iter);
                 iter--;
             }
@@ -119,15 +138,19 @@ void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<sh
         for (auto jter = allSprites.begin(); jter != allSprites.end(); jter++) {
             if ((*jter)->isIntersect(iter->get())) {
                 if((*jter)->collision(iter->get()) && (*iter)->collision(jter->get())) {
+                    destroyed.insert(*jter);
                     jter = allSprites.erase(jter);
                     jter--;
 
+                    destroyed.insert(*iter);
                     iter = enemyTanks.erase(iter);
                     iter--;
                 } else if ((*jter)->collision(iter->get())) {
+                    destroyed.insert(*jter);
                     jter = allSprites.erase(jter);
                     jter--;
                 } else if ((*iter)->collision(jter->get())) {
+                    destroyed.insert(*iter);
                     iter = enemyTanks.erase(iter);
                     iter--;
                 }
@@ -139,9 +162,11 @@ void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<sh
         for (auto jter = allSprites.begin(); jter != allSprites.end(); jter++) {
             if((*jter != *iter) && (*iter)->isIntersect(jter->get()) && (*iter)->collision(jter->get())) {
                 if ((*jter)->collision(iter->get())) {
+                    destroyed.insert(*jter);
                     jter = allSprites.erase(jter);
                     jter--;
                 }
+                destroyed.insert(*iter);
                 iter = allSprites.erase(iter);
                 iter--;
 
@@ -150,3 +175,49 @@ void checkCollisions(MainTank& mainTank, SecondaryTank& secondaryTank, vector<sh
         }
     }
 }
+
+void removeDestroyed(set<shared_ptr<Sprite>>& destroyed, sf::Clock clock) {
+    for (auto iter = destroyed.begin(); iter != destroyed.end();) {
+        if ((*iter)->isExploded(clock)) {
+            iter = destroyed.erase(iter);
+
+        } else {
+            iter++;
+        }
+    }
+}
+
+bool gameOver(MainTank& mainTank, vector<shared_ptr<EnemyTank>>& enemyTanks) {
+    bool result = false;
+    if (mainTank.getHealth() <= 0) {
+        result = true;
+    }
+    if (enemyTanks.size() == 0) {
+        result = true;
+    }
+    return result;
+}
+
+void drawGameOver(sf::RenderWindow& window, bool isWin) {
+    sf::Font font;
+    font.loadFromFile("../fonts/Unique.ttf");
+
+    sf::Text gameEnd;
+    sf::FloatRect textRect = gameEnd.getLocalBounds();
+
+    gameEnd.setFont(font);
+    gameEnd.setOrigin(textRect.width / 2.0f + 200, textRect.height / 2.0f + 50);
+    gameEnd.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
+    gameEnd.setCharacterSize(100);
+
+    if (isWin) {
+        gameEnd.setString("YOU WON");
+        gameEnd.setFillColor(sf::Color::Green);
+    } else {
+        gameEnd.setString("YOU LOST");
+        gameEnd.setFillColor(sf::Color::Red);
+    }
+
+    window.draw(gameEnd);
+}
+

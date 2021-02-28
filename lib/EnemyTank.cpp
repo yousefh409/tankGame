@@ -11,12 +11,16 @@
 using namespace std;
 
 bool EnemyTank::collision(Sprite* collided) {
+    currentFrame = 0;
+    numFrames = 4;
     Bullet* bullet = dynamic_cast<Bullet*>(collided);
 
     if (bullet) {
-        cout << "Enemy Tank Hit!" << endl;
-    } else {
-        cout << "eefefe";
+        health -= bullet->getDamage();
+        cout << "Enemy Tank Hit, Health: " << health << endl;
+    }
+    if (health <= 0) {
+        return true;
     }
     return false;
 }

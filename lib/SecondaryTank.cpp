@@ -59,11 +59,13 @@ bool SecondaryTank::collision(Sprite* collided) {
     Bullet* bullet = dynamic_cast<Bullet*>(collided);
 
     if (bullet) {
-        cout << "Tank 2 Hit!" << endl;
-    } else {
-
+        health -= bullet->getDamage();
+        cout << "Tank 2 Hit, Health: " << health << endl;
     }
-
-    return false;
+    if (health <= 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 

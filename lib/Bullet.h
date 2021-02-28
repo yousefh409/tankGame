@@ -10,8 +10,11 @@ using namespace std;
 class Bullet : public Sprite {
 private:
     sf::Time lastMoved;
+    double damage;
 public:
-    Bullet(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Sprite(newUrl, newPosition, newRotation, newScale), lastMoved(sf::seconds(0)) {};
+    Bullet(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Sprite(newUrl, newPosition, newRotation, newScale), lastMoved(sf::seconds(0)), damage(10) {};
     void update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock) override;
     virtual bool collision(Sprite* collided) override;
+
+    double getDamage() const { return damage; }
 };

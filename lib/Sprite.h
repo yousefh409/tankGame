@@ -16,7 +16,10 @@ protected:
     sf::Vector2f position;
     double rotation;
     double scale;
+    int numFrames;
+    int currentFrame = 0;
 
+    sf::Time lastAnimated;
 public:
     Sprite(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale);
 
@@ -34,6 +37,7 @@ public:
 
     bool isIntersect(Sprite* other);
     virtual bool collision(Sprite* collided);
+    virtual bool isExploded(sf::Clock clock);
 
     virtual void update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock);
 };

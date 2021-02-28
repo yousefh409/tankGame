@@ -11,7 +11,7 @@ using namespace std;
 
 class EnemyTank : public Tank {
 public:
-    EnemyTank(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Tank(newUrl, newPosition, newRotation, newScale) {}
+    EnemyTank(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Tank(newUrl, newPosition, newRotation, newScale) { health = 50; }
     virtual void update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) override {};
     virtual bool collision(Sprite* collided) override;
 };

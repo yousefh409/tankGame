@@ -47,19 +47,20 @@ void Sprite::setPosition(sf::Vector2f newPosition, vector<shared_ptr<Sprite>>& a
 }
 
 void Sprite::setUrl(string newUrl) {
+
     imageUrl = newUrl;
 
-    sf::Texture texture;
-	texture.loadFromFile(imageUrl);
+    texture = make_shared<sf::Texture>(sf::Texture());
+	texture->loadFromFile(imageUrl);
 
-	sprite = sf::Sprite(texture);
+	sprite = sf::Sprite(*texture);
 
 	sprite.setScale(scale, scale);
 	sprite.setPosition(position);
 
 
-    sf::Vector2f spriteSize(texture.getSize().x * scale, texture.getSize().y * scale);
-    sf::Vector2f center(spriteSize.x / 2, spriteSize.y / 2);
+    sf::Vector2f spriteSize(texture->getSize().x * scale, texture->getSize().y * scale);
+    sf::Vector2f center(sprite.getLocalBounds().width / 2.0f, sprite.getLocalBounds().height / 2.0f);
 	sprite.setOrigin(center);
 
 	sprite.setRotation(rotation);
@@ -91,12 +92,33 @@ bool Sprite::isIntersect(Sprite* other) {
 }
 
 bool Sprite::collision(Sprite* collided) {
+    numFrames = 0;
+    currentFrame = 0;
+
     return false;
+}
+
+bool Sprite::isExploded(sf::Clock clock) {
+    if (numFrames == currentFrame) {
+        return true;
+    } else {
+        sf::Time currentTime = clock.getElapsedTime();
+        if ((currentTime - lastAnimated).asMilliseconds() > 100) {
+            currentFrame++;
+            string newImg = "../images/explosionFrame" + to_string(currentFrame) + ".png";
+            setScale(0.9);
+            setUrl(newImg);
+            lastAnimated = currentTime;
+        }
+        return false;
+    }
 }
 
 void Sprite::update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
     window.draw(sprite);
 }
+
+
 
 
 
