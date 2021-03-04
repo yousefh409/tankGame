@@ -22,7 +22,7 @@ void Tank::fire(vector<shared_ptr<Sprite>>& allSprites , sf::Clock& clock) {
         if (static_cast<int>(rotation) % 90 != 0) {
             bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 100, sprite.getPosition().y + rotationVector.x * -100);
         }
-        Bullet bullet("../images/bullet.png", bulletPos, sprite.getRotation() + 90, 0.08);
+        Bullet bullet("images/bullet.png", bulletPos, sprite.getRotation() + 90, 0.08);
         allSprites.push_back(make_shared<Bullet>(bullet));
     }
 }

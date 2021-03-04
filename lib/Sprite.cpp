@@ -94,6 +94,25 @@ bool Sprite::collision(Sprite* collided) {
     return false;
 }
 
+<<<<<<< Updated upstream
+=======
+bool Sprite::isExploded(sf::Clock clock) {
+    if (numFrames == currentFrame) {
+        return true;
+    } else {
+        sf::Time currentTime = clock.getElapsedTime();
+        if ((currentTime - lastAnimated).asMilliseconds() > 100) {
+            currentFrame++;
+            string newImg = "images/explosionFrame" + to_string(currentFrame) + ".png";
+            setScale(0.9);
+            setUrl(newImg);
+            lastAnimated = currentTime;
+        }
+        return false;
+    }
+}
+
+>>>>>>> Stashed changes
 void Sprite::update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
     window.draw(sprite);
 }
