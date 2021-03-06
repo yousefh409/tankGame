@@ -1,16 +1,7 @@
 #pragma once
-#include "SFML/Graphics.hpp"
-#include <iostream>
-#include <string>
-#include <vector>
-#include <set>
-#include "Sprite.h"
-#include "MainTank.h"
-#include "SecondaryTank.h"
-#include "Bullet.h"
-#include "Maps.h"
-#include "Wall.h"
-#include "EnemyTank.h"
+
+#include "GameState.h"
+#include "MainMenuState.h"
 
 
 using namespace std;
@@ -30,6 +21,10 @@ private:
 	vector<shared_ptr<Sprite>> allSprites;
 	vector<shared_ptr<EnemyTank>> enemyTanks;
 	set<shared_ptr<Sprite>> destroyed;
+
+
+	std::stack<State*> states;
+	std::map<std::string, int> supportedKeys;
 	
 
 	//Intitializer Functions
@@ -40,7 +35,9 @@ private:
 	void removeDestroyed();
 	bool gameOver();
 	void drawGameOver();
-	//void initMap();
+	void initKeys();
+	void initState(); //pushes a state
+	
 
 public:
 	//Constructor/Destructors
@@ -48,11 +45,12 @@ public:
 	virtual ~Game();
 
 	//Functions 
-	void gameOverCheck();
+	//void gameOverCheck();
 	void updateEvents();
 	void update();
 	void render();
 	void run();
+	void endApplication();
 
 };
 
