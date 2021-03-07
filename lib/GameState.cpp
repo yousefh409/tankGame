@@ -4,7 +4,7 @@
 void GameState::initBackground()
 {
 	this->background.setSize(sf::Vector2f(1024.0f, 768.0f));
-	backgroundTexture.loadFromFile(std::string("../images/background.png"));
+	backgroundTexture.loadFromFile(std::string("images/background.png"));
 	this->background.setTexture(&backgroundTexture);
 }
 
@@ -16,7 +16,7 @@ void GameState::initializeLevel()
 		{
 			if (Maps::mapOne[i][j] == 1)
 			{
-				Wall wall("../images/border.png", sf::Vector2f(i * 50, j * 70), 0, 0.13);
+				Wall wall("images/border.png", sf::Vector2f(i * 50, j * 70), 0, 0.13);
 				allSprites.push_back(make_shared<Wall>(wall));
 			}
 		}
@@ -27,7 +27,6 @@ void GameState::initializeLevel()
 
 void GameState::updateWindow()
 {
-	this->mainTank->update(this->window, event, allSprites, clock);
 	this->secondaryTank->update(this->window, event, allSprites, clock);
 	for (auto iter = allSprites.begin(); iter != allSprites.end(); iter++) {
 		(*iter)->update(this->window, event, allSprites, clock);
@@ -43,11 +42,11 @@ void GameState::updateWindow()
 void GameState::checkCollisions()
 {
 	for (auto iter = allSprites.begin(); iter != allSprites.end(); iter++) {
-		if ((*iter)->isIntersect(this->mainTank)) {
-			if (this->mainTank->collision(iter->get())) {
+		if ((*iter)->isIntersect(this->allSprites.front().get())) {
+			if (this->allSprites.front()->collision(iter->get())) {
 				//MAIN LOST
 			}
-			if ((*iter)->collision(this->mainTank)) {
+			if ((*iter)->collision(this->allSprites.front().get())) {
 				destroyed.insert(*iter);
 				iter = allSprites.erase(iter);
 				iter--;
@@ -55,7 +54,7 @@ void GameState::checkCollisions()
 		}
 	}
 
-	for (auto iter = allSprites.begin(); iter != allSprites.end(); iter++) {
+	for (auto iter = allSprites.begin() + 1; iter != allSprites.end(); iter++) {
 		if ((*iter)->isIntersect(this->secondaryTank)) {
 			if (this->secondaryTank->collision(iter->get())) {
 				//SECONDARY LOST
@@ -69,7 +68,7 @@ void GameState::checkCollisions()
 	}
 
 	for (auto iter = enemyTanks.begin(); iter != enemyTanks.end(); iter++) {
-		for (auto jter = allSprites.begin(); jter != allSprites.end(); jter++) {
+		for (auto jter = allSprites.begin() + 1; jter != allSprites.end(); jter++) {
 			if ((*jter)->isIntersect(iter->get())) {
 				if ((*jter)->collision(iter->get()) && (*iter)->collision(jter->get())) {
 					destroyed.insert(*jter);
@@ -96,8 +95,8 @@ void GameState::checkCollisions()
 		}
 	}
 
-	for (auto iter = allSprites.begin(); iter != allSprites.end(); iter++) {
-		for (auto jter = allSprites.begin(); jter != allSprites.end(); jter++) {
+	for (auto iter = allSprites.begin() + 1; iter != allSprites.end(); iter++) {
+		for (auto jter = allSprites.begin() + 1; jter != allSprites.end(); jter++) {
 			if ((*jter != *iter) && (*iter)->isIntersect(jter->get()) && (*iter)->collision(jter->get())) {
 				if ((*jter)->collision(iter->get())) {
 					destroyed.insert(*jter);
@@ -130,7 +129,7 @@ void GameState::removeDestroyed()
 bool GameState::gameOver()
 {
 	bool result = false;
-	if (this->mainTank->getHealth() <= 0) {
+	if (this->allSprites.front()->getHealth() <= 0) {
 		result = true;
 	}
 	if (enemyTanks.size() == 0) {
@@ -155,7 +154,7 @@ void GameState::gameOverCheck()
 void GameState::drawGameOver()
 {
 	sf::Font font;
-	font.loadFromFile("../fonts/Unique.ttf");
+	font.loadFromFile("fonts/Unique.ttf");
 
 	sf::Text gameEnd;
 	sf::FloatRect textRect = gameEnd.getLocalBounds();
@@ -165,7 +164,7 @@ void GameState::drawGameOver()
 	gameEnd.setPosition(this->window->getSize().x / 2.0f, this->window->getSize().y / 2.0f);
 	gameEnd.setCharacterSize(100);
 
-	if (this->mainTank->getHealth() > 0) {
+	if (this->allSprites.front()->getHealth() > 0) {
 		gameEnd.setString("YOU WON");
 		gameEnd.setFillColor(sf::Color::Green);
 	}
@@ -180,7 +179,7 @@ void GameState::drawGameOver()
 
 void GameState::initKeybinds()
 {
-	ifstream fin("../images/gameStateKeybinds.txt");
+	ifstream fin("images/gameStateKeybinds.txt");
 	if (!fin)
 	{
 		cout << "Cant find file2" << endl;
@@ -205,8 +204,9 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
 {
 	this->initBackground();
 	this->initKeybinds();
-	this->mainTank = new MainTank("../images/tank.png", sf::Vector2f(1024.0f / 2, 768.0f / 2), 0, 0.4);
-	this->secondaryTank = new SecondaryTank("../images/tank.png", sf::Vector2f(1024.0f / 5, 768.0f / 5), 0, 0.4);
+	this->mainTank = new MainTank("images/tank.png", sf::Vector2f(1024.0f / 2, 768.0f / 2), 0, 0.4);
+	this->secondaryTank = new SecondaryTank("images/tank.png", sf::Vector2f(1024.0f / 5, 768.0f / 5), 0, 0.4);
+	this->allSprites.push_back(make_shared<MainTank>(*mainTank));
 	this->initializeLevel();
 }
 

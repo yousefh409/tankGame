@@ -16,6 +16,7 @@ protected:
     sf::Vector2f position;
     double rotation;
     double scale;
+    double health = 0.0;
     int numFrames;
     int currentFrame = 0;
 
@@ -31,6 +32,7 @@ public:
 
     sf::Vector2f getPosition() const { return position; }
     double getRotation() const { return rotation; }
+    double getHealth() const { return health; }
 
 
     sf::Vector2f rotationToVector(double rot, double offset) const;

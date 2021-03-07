@@ -14,7 +14,6 @@ void EnemyTank::update(sf::RenderWindow* window, sf::Event& event, vector<shared
     Tank::update(window, event, allSprites, clock);
 }
 
-
 bool EnemyTank::collision(Sprite* collided) {
     currentFrame = 0;
     numFrames = 4;
@@ -29,15 +28,26 @@ bool EnemyTank::collision(Sprite* collided) {
     return false;
 }
 
-void PeriodicFire::update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
+void PeriodicFire::update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock) {
+    // cout << (*allSprites.front()).getPosition().x << " " << (*allSprites.front()).getPosition().y << endl;
+    double x_offset = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 200));
+    double y_offset = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 200));
+    double angle = (atan2((*allSprites.front()).getPosition().y - sprite.getPosition().y, (*allSprites.front()).getPosition().x - sprite.getPosition().x) * 180 / 3.14159265);
+    setRotation(angle);
+
+    float x_pos = sprite.getPosition().x;
+    float y_pos = sprite.getPosition().y;
+    setPosition(sf::Vector2f(x_pos + currentDirection.x, y_pos + currentDirection.y), allSprites);
 
     sf::Time currentTime = clock.getElapsedTime();
-    if ((currentTime - lastMoved).asSeconds() > period) {
+    if ((currentTime - lastMoved).asSeconds() > 1) {
         lastMoved = currentTime;
-        setRotation(static_cast<int>(rotation + 90) % 360);
+        currentDirection.x = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 10)) - 5;
+        currentDirection.y = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 10)) - 5;
     }
+
     fire(allSprites, clock);
-     EnemyTank::update(window, event, allSprites, clock);
+    EnemyTank::update(window, event, allSprites, clock);
     window->draw(sprite);
 }
 

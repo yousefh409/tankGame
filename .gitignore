@@ -1,0 +1,5 @@
+*.opendb
+.vs/
+*.sln
+*.vcxproj
+*.log
