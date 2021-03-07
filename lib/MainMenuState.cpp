@@ -5,7 +5,7 @@
 void MainMenuState::initBackGround()
 {
 	this->background.setSize(sf::Vector2f(static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y)));
-	if (!this->backGroundTexture.loadFromFile("../images/tankBackground.jpg"))
+	if (!this->backGroundTexture.loadFromFile("images/tankBackground.jpg"))
 	{
 		throw("ERROR::MAINMENUSTATE;;COULD NOT LOAD BACKGROUND TEXTURE");
 	}
@@ -14,7 +14,7 @@ void MainMenuState::initBackGround()
 
 void MainMenuState::initFonts()
 {
-	if (!this->font.loadFromFile("../fonts/Unique.ttf"))
+	if (!this->font.loadFromFile("fonts/Unique.ttf"))
 	{
 		throw("ERROR::MAINMENUSTATE;;COULD NOT LOAD FONT");
 	}
@@ -25,7 +25,7 @@ void MainMenuState::initFonts()
 
 void MainMenuState::initKeybinds()
 {
-	ifstream fin("../images/mainMenuStateKeybinds.txt");
+	ifstream fin("images/mainMenuStateKeybinds.txt");
 	if (!fin)
 	{
 		cout << "Cant find file2" << endl;

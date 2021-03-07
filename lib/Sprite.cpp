@@ -109,7 +109,7 @@ bool Sprite::isExploded(sf::Clock clock) {
         sf::Time currentTime = clock.getElapsedTime();
         if ((currentTime - lastAnimated).asMilliseconds() > 100) {
             currentFrame++;
-            string newImg = "../images/explosionFrame" + to_string(currentFrame) + ".png";
+            string newImg = "images/explosionFrame" + to_string(currentFrame) + ".png";
             setScale(0.9);
             setUrl(newImg);
             lastAnimated = currentTime;
