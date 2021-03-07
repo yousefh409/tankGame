@@ -11,8 +11,8 @@ using namespace std;
 
 class EnemyTank : public Tank {
 public:
-    EnemyTank(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Tank(newUrl, newPosition, newRotation, newScale) { health = 50; }
-    virtual void update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) override {};
+    EnemyTank(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Tank(newUrl, newPosition, newRotation, newScale) { origHealth = health = 50; }
+    virtual void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) override;
     virtual bool collision(Sprite* collided) override;
 };
 
@@ -23,5 +23,5 @@ protected:
     sf::Time lastMoved;
 public:
     PeriodicFire(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, double newPeriod) : EnemyTank(newUrl, newPosition, newRotation, newScale), period(newPeriod) { firePeriod = 1000; }
-    virtual void update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) override;
+    virtual void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) override;
 };

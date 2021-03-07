@@ -8,9 +8,9 @@
 #include "MainTank.h"
 
 
-void MainTank::update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
+void MainTank::update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
 
-        sf::Vector2f delta = sf::Vector2f(window.getSize().x / 1500.f, window.getSize().y / 1500.f);
+        sf::Vector2f delta = sf::Vector2f(window->getSize().x / 1500.f, window->getSize().y / 1500.f);
 
         float totalRotation = 0;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
@@ -53,8 +53,13 @@ void MainTank::update(sf::RenderWindow& window, sf::Event& event, vector<shared_
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
             fire(allSprites, clock);
         }
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+            fireBig(allSprites, clock, window);
+        }
 
-    window.draw(sprite);
+    Tank::update(window, event, allSprites, clock);
+
+    window->draw(sprite);
 }
 
 
@@ -63,7 +68,6 @@ bool MainTank::collision(Sprite* collided) {
 
     if (bullet) {
         health -= bullet->getDamage();
-        cout << "Tank 1 Hit, Health: " << health << endl;
     }
     if (health <= 0) {
         return true;

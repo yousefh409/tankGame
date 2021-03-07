@@ -7,8 +7,8 @@
 #include "SecondaryTank.h"
 
 
-void SecondaryTank::update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
-        sf::Vector2f delta = sf::Vector2f(window.getSize().x / 1500.f, window.getSize().y / 1500.f);
+void SecondaryTank::update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
+        sf::Vector2f delta = sf::Vector2f(window->getSize().x / 1500.f, window->getSize().y / 1500.f);
 
         float totalRotation = 0;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
@@ -52,7 +52,7 @@ void SecondaryTank::update(sf::RenderWindow& window, sf::Event& event, vector<sh
             fire(allSprites, clock);
         }
 
-    window.draw(sprite);
+    window->draw(sprite);
 }
 
 bool SecondaryTank::collision(Sprite* collided) {
@@ -60,7 +60,6 @@ bool SecondaryTank::collision(Sprite* collided) {
 
     if (bullet) {
         health -= bullet->getDamage();
-        cout << "Tank 2 Hit, Health: " << health << endl;
     }
     if (health <= 0) {
         return true;

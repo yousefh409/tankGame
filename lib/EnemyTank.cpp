@@ -10,6 +10,11 @@
 
 using namespace std;
 
+void EnemyTank::update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
+    Tank::update(window, event, allSprites, clock);
+}
+
+
 bool EnemyTank::collision(Sprite* collided) {
     currentFrame = 0;
     numFrames = 4;
@@ -17,7 +22,6 @@ bool EnemyTank::collision(Sprite* collided) {
 
     if (bullet) {
         health -= bullet->getDamage();
-        cout << "Enemy Tank Hit, Health: " << health << endl;
     }
     if (health <= 0) {
         return true;
@@ -25,7 +29,7 @@ bool EnemyTank::collision(Sprite* collided) {
     return false;
 }
 
-void PeriodicFire::update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
+void PeriodicFire::update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
 
     sf::Time currentTime = clock.getElapsedTime();
     if ((currentTime - lastMoved).asSeconds() > period) {
@@ -33,6 +37,7 @@ void PeriodicFire::update(sf::RenderWindow& window, sf::Event& event, vector<sha
         setRotation(static_cast<int>(rotation + 90) % 360);
     }
     fire(allSprites, clock);
-    window.draw(sprite);
+     EnemyTank::update(window, event, allSprites, clock);
+    window->draw(sprite);
 }
 

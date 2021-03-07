@@ -33,11 +33,13 @@ public:
     double getRotation() const { return rotation; }
 
 
-    sf::Vector2f getVectorRotation(double offset) const;
+    sf::Vector2f rotationToVector(double rot, double offset) const;
+    double vectorToRotation(sf::Vector2f& orig) const;
+
 
     bool isIntersect(Sprite* other);
     virtual bool collision(Sprite* collided);
     virtual bool isExploded(sf::Clock clock);
 
-    virtual void update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock);
+    virtual void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock);
 };

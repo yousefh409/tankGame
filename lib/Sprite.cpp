@@ -79,12 +79,16 @@ void Sprite::setScale(double newScale) {
 
 }
 
-sf::Vector2f Sprite::getVectorRotation(double offset) const {
-    double radians = (rotation + offset) * (3.14159 / 180.0);
+sf::Vector2f Sprite::rotationToVector(double rot, double offset) const {
+    double radians = (rot + offset) * (3.14159 / 180.0);
     sf::Vector2f rotationVector(cos(radians), sin(radians));
 
     return rotationVector;
 
+}
+
+double Sprite::vectorToRotation(sf::Vector2f& orig) const {
+    return atan(orig.y / orig.x) * (180.0 / 3.14159);
 }
 
 bool Sprite::isIntersect(Sprite* other) {
@@ -114,8 +118,8 @@ bool Sprite::isExploded(sf::Clock clock) {
     }
 }
 
-void Sprite::update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
-    window.draw(sprite);
+void Sprite::update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
+    window->draw(sprite);
 }
 
 

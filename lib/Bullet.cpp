@@ -9,21 +9,21 @@
 
 using namespace std;
 
-void Bullet::update(sf::RenderWindow& window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
+void Bullet::update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
 
     if (currentFrame == 0) {
         sf::Time currentTime = clock.getElapsedTime();
-        if ((currentTime - lastMoved).asMilliseconds() > 20) {
+        if ((currentTime - lastMoved).asMilliseconds() > speedPeriod) {
             lastMoved = currentTime;
-            sf::Vector2f rotationVector = getVectorRotation(-90);
+            sf::Vector2f rotationVector = rotationToVector(rotation, -90);
 
-            sf::Vector2f delta = sf::Vector2f((window.getSize().x / 50.f) * rotationVector.x, (window.getSize().y / 50.f) * rotationVector.y);
+            sf::Vector2f delta = sf::Vector2f((window->getSize().x / 50.f) * rotationVector.x, (window->getSize().y / 50.f) * rotationVector.y);
 
             setPosition(sf::Vector2f(position.x + delta.x, position.y + delta.y), allSprites, false);
 
         }
     }
-    window.draw(sprite);
+    window->draw(sprite);
 }
 
 bool Bullet::collision(Sprite* collided) {
@@ -34,3 +34,8 @@ bool Bullet::collision(Sprite* collided) {
     return true;
 }
 
+
+BigBullet::BigBullet(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Bullet(newUrl, newPosition, newRotation, newScale) {
+    damage = 30;
+    speedPeriod = 60;
+}
