@@ -5,6 +5,7 @@
 
 int main()
 {
+	srand(NULL);
 	Game game;
 	game.run();
 }
