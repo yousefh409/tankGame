@@ -49,7 +49,7 @@ void SecondaryTank::update(sf::RenderWindow* window, sf::Event& event, vector<sh
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::RShift)) {
-            fire(allSprites, clock);
+            fire(allSprites, clock, 10);
         }
 
     window->draw(sprite);

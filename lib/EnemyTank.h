@@ -11,11 +11,10 @@ using namespace std;
 
 class EnemyTank : public Tank {
 public:
-    EnemyTank(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Tank(newUrl, newPosition, newRotation, newScale) { origHealth = health = 50; }
+    EnemyTank(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, int health) : Tank(newUrl, newPosition, newRotation, newScale) { this->origHealth = this->health = health; }
     virtual void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) override;
     virtual bool collision(Sprite* collided) override;
 };
-
 
 class PeriodicFire : public EnemyTank {
 protected:
@@ -23,6 +22,6 @@ protected:
     sf::Vector2f currentDirection;
     sf::Time lastMoved;
 public:
-    PeriodicFire(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, double newPeriod) : EnemyTank(newUrl, newPosition, newRotation, newScale), period(newPeriod) { firePeriod = 1000; }
+    PeriodicFire(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, double newPeriod, int health) : EnemyTank(newUrl, newPosition, newRotation, newScale, health), period(newPeriod) {}
     virtual void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock) override;
 };

@@ -33,6 +33,7 @@ public:
     sf::Vector2f getPosition() const { return position; }
     double getRotation() const { return rotation; }
     double getHealth() const { return health; }
+    string getUrl() const { return imageUrl; }
 
 
     sf::Vector2f rotationToVector(double rot, double offset) const;

@@ -14,35 +14,35 @@ void MainTank::update(sf::RenderWindow* window, sf::Event& event, vector<shared_
 
         float totalRotation = 0;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-            setPosition(sf::Vector2f(position.x, position.y - delta.y), allSprites);
+            setPosition(sf::Vector2f(position.x, position.y - delta.y / 5), allSprites);
             totalRotation = 270;
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
                 totalRotation -= 45;
-                setPosition(sf::Vector2f(position.x - delta.x, position.y), allSprites);
+                setPosition(sf::Vector2f(position.x - delta.x / 5, position.y), allSprites);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
                 totalRotation += 45;
-                setPosition(sf::Vector2f(position.x + delta.x, position.y), allSprites);
+                setPosition(sf::Vector2f(position.x + delta.x / 5, position.y), allSprites);
             }
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-            setPosition(sf::Vector2f(position.x, position.y + delta.y), allSprites);
+            setPosition(sf::Vector2f(position.x, position.y + delta.y / 5), allSprites);
             totalRotation = 90;
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
                 totalRotation += 45;
-                setPosition(sf::Vector2f(position.x - delta.x, position.y), allSprites);
+                setPosition(sf::Vector2f(position.x - delta.x / 5, position.y), allSprites);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
                 totalRotation -= 45;
-                setPosition(sf::Vector2f(position.x + delta.x, position.y), allSprites);
+                setPosition(sf::Vector2f(position.x + delta.x / 5, position.y), allSprites);
             }
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-            setPosition(sf::Vector2f(position.x - delta.x, position.y), allSprites);
+            setPosition(sf::Vector2f(position.x - delta.x / 5, position.y), allSprites);
             totalRotation = 180;
         }
        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-            setPosition(sf::Vector2f(position.x + delta.x, position.y), allSprites);
+            setPosition(sf::Vector2f(position.x + delta.x / 5, position.y), allSprites);
             totalRotation = 0;
             setRotation(totalRotation);
         }
@@ -51,7 +51,7 @@ void MainTank::update(sf::RenderWindow* window, sf::Event& event, vector<shared_
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-            fire(allSprites, clock);
+            fire(allSprites, clock, 10);
         }
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
             fireBig(allSprites, clock, window);

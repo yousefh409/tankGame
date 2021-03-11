@@ -28,7 +28,7 @@ void Tank::update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<
 }
 
 
-void Tank::fire(vector<shared_ptr<Sprite>>& allSprites , sf::Clock& clock) {
+void Tank::fire(vector<shared_ptr<Sprite>>& allSprites , sf::Clock& clock, double damage) {
     sf::Time currentTime = clock.getElapsedTime();
     if ((currentTime - lastFired).asMilliseconds() > firePeriod) {
         lastFired = currentTime;
@@ -37,10 +37,11 @@ void Tank::fire(vector<shared_ptr<Sprite>>& allSprites , sf::Clock& clock) {
 
         sf::Vector2f bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 60, sprite.getPosition().y + rotationVector.x * -60);
         if (static_cast<int>(rotation) % 90 != 0) {
-            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 100, sprite.getPosition().y + rotationVector.x * -100);
+            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 100*(0.75 + scale), sprite.getPosition().y + rotationVector.x * -100*(0.75 + scale));
         }
 
         Bullet bullet("images/bullet.png", bulletPos, sprite.getRotation() + 90, 0.08);
+        bullet.setDamage(damage);
         allSprites.push_back(make_shared<Bullet>(bullet));
     }
 }
