@@ -51,10 +51,16 @@ void MainTank::update(sf::RenderWindow* window, sf::Event& event, vector<shared_
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-            fire(allSprites, clock);
+            fire(allSprites, clock, 10);
         }
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             fireBig(allSprites, clock, window);
+        }
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+            fireBouncing(allSprites, clock, window);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
+            fireLaser(allSprites, clock, window);
         }
 
     Tank::update(window, event, allSprites, clock);
@@ -65,9 +71,10 @@ void MainTank::update(sf::RenderWindow* window, sf::Event& event, vector<shared_
 
 bool MainTank::collision(Sprite* collided) {
     Bullet* bullet = dynamic_cast<Bullet*>(collided);
-
-    if (bullet) {
+    sf::Time currentTime = clock.getElapsedTime();
+    if (bullet && (currentTime - lastHit).asMilliseconds() > 100) {
         health -= bullet->getDamage();
+        lastHit = currentTime;
     }
     if (health <= 0) {
         return true;

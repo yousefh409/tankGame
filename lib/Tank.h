@@ -18,6 +18,8 @@ public:
 
     virtual void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock);
     virtual bool collision(Sprite* collided) = 0;
-    virtual void fire(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock);
+    virtual void fire(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock, double damage);
     virtual void fireBig(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock, sf::RenderWindow* window);
+    virtual void fireLaser(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock, sf::RenderWindow* window);
+    virtual void fireBouncing(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock, sf::RenderWindow* window);
 };

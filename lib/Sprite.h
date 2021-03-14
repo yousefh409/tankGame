@@ -23,7 +23,7 @@ protected:
     sf::Time lastAnimated;
 public:
     Sprite(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale);
-
+    Sprite(const Sprite& toCopy);
 
     void setPosition(sf::Vector2f newPosition, vector<shared_ptr<Sprite>>& allSprites,  bool avoidCollision=true);
     void setUrl(string newUrl);
@@ -33,7 +33,7 @@ public:
     sf::Vector2f getPosition() const { return position; }
     double getRotation() const { return rotation; }
     double getHealth() const { return health; }
-
+    string getUrl() const { return imageUrl; }
 
     sf::Vector2f rotationToVector(double rot, double offset) const;
     double vectorToRotation(sf::Vector2f& orig) const;

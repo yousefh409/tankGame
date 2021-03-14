@@ -14,7 +14,7 @@ void Game::initWindow()
 void Game::initKeys()
 {
 
-	ifstream fin("images/keys.txt");
+	ifstream fin(Maps::filePrefix + "keys.txt");
 	if (!fin)
 	{
 		cout << "Cant find file" << endl;

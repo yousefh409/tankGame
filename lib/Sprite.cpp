@@ -5,6 +5,8 @@
 #include <memory>
 #include <cmath>
 #include "Sprite.h"
+#include "Maps.h"
+
 
 using namespace std;
 
@@ -15,6 +17,27 @@ Sprite::Sprite(string newUrl, sf::Vector2f newPosition, double newRotation, doub
     rotation = newRotation;
     scale = newScale;
 
+    texture = make_shared<sf::Texture>(sf::Texture());
+	texture->loadFromFile(imageUrl);
+	sprite = sf::Sprite(*texture);
+
+	sprite.setScale(scale, scale);
+	sprite.setPosition(position);
+
+    sf::Vector2f spriteSize(texture->getSize().x * scale, texture->getSize().y * scale);
+    sf::Vector2f center(sprite.getLocalBounds().width / 2.0f, sprite.getLocalBounds().height / 2.0f);
+	sprite.setOrigin(center);
+
+	sprite.setRotation(rotation);
+}
+
+
+Sprite::Sprite(const Sprite& toCopy) {
+    position = toCopy.position;
+    imageUrl = toCopy.imageUrl;
+    rotation = toCopy.rotation;
+    scale = toCopy.scale;
+    health = toCopy.health;
     texture = make_shared<sf::Texture>(sf::Texture());
 	texture->loadFromFile(imageUrl);
 	sprite = sf::Sprite(*texture);
@@ -95,7 +118,7 @@ bool Sprite::isIntersect(Sprite* other) {
     return sprite.getGlobalBounds().intersects(other->sprite.getGlobalBounds());
 }
 
-bool Sprite::collision(Sprite* collided) {
+bool Sprite::collision(Sprite* /*collided*/) {
     numFrames = 0;
     currentFrame = 0;
 
@@ -109,7 +132,7 @@ bool Sprite::isExploded(sf::Clock clock) {
         sf::Time currentTime = clock.getElapsedTime();
         if ((currentTime - lastAnimated).asMilliseconds() > 100) {
             currentFrame++;
-            string newImg = "images/explosionFrame" + to_string(currentFrame) + ".png";
+            string newImg = Maps::filePrefix + "explosionFrame" + to_string(currentFrame) + ".png";
             setScale(0.9);
             setUrl(newImg);
             lastAnimated = currentTime;
@@ -118,7 +141,7 @@ bool Sprite::isExploded(sf::Clock clock) {
     }
 }
 
-void Sprite::update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
+void Sprite::update(sf::RenderWindow* window, sf::Event& /*event*/, vector<shared_ptr<Sprite>>& /*allSprites*/, sf::Clock& /*clock*/) {
     window->draw(sprite);
 }
 

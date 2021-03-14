@@ -1,20 +1,24 @@
 #pragma once
 
+#include "Score.h"
 #include "State.h"
 
-class GameState :public State
+class GameState : public State
 {
 private:
-
+    unsigned int gameIndex;
+    bool isTest;
+    Score score;
+	sf::Time whenEnded;
+	bool isEndedSet;
 	sf::Event event;
 	sf::Clock clock;
 	sf::RectangleShape background;
 	sf::Texture backgroundTexture;
-	MainTank* mainTank;
-	SecondaryTank* secondaryTank;
-	vector<shared_ptr<Sprite>> allSprites;
+	vector<shared_ptr<Sprite>> allSprites; //main and secondary tanks stored in 1st and 2nd elements
 	vector<shared_ptr<EnemyTank>> enemyTanks;
 	set<shared_ptr<Sprite>> destroyed;
+    sf::Font font;
 
 
 	//Intitializer Functions
@@ -27,12 +31,14 @@ private:
 	bool gameOver();
 	void gameOverCheck();
 	void drawGameOver();
+	void writeScoreFile();
+	void drawScore();
 	//Functions
 
 
 public:
 
-	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, int newGame, bool isTestNew);
 	virtual ~GameState();
 
 

@@ -10,19 +10,20 @@
 using namespace std;
 
 class EnemyTank : public Tank {
-public:
-    EnemyTank(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Tank(newUrl, newPosition, newRotation, newScale) { origHealth = health = 50; }
-    virtual void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) override;
-    virtual bool collision(Sprite* collided) override;
-};
-
-
-class PeriodicFire : public EnemyTank {
 protected:
     double period;
     sf::Vector2f currentDirection;
     sf::Time lastMoved;
+
+    void basicUpdate(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock);
+    void hardUpdate(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock);
+    void stationaryUpdate(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock);
+    void bossUpdate(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock);
+
 public:
-    PeriodicFire(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, double newPeriod) : EnemyTank(newUrl, newPosition, newRotation, newScale), period(newPeriod) { firePeriod = 1000; }
-    virtual void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock) override;
+    EnemyTank(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, double newPeriod, int health) : Tank(newUrl, newPosition, newRotation, newScale), period(newPeriod) { this->origHealth = this->health = health; }
+    virtual void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) override;
+    virtual bool collision(Sprite* collided) override;
+
+    virtual shared_ptr<EnemyTank> clone() const { return make_shared<EnemyTank>(*this); }
 };

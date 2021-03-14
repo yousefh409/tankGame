@@ -15,7 +15,7 @@ Button::Button(float x, float y, float width, float height, sf::Font* font, std:
 	this->text.setFont(*this->font);
 	this->text.setString(text);
 	this->text.setFillColor(sf::Color::White);
-	this->text.setCharacterSize(12);
+	this->text.setCharacterSize(18);
 	this->text.setPosition(
 		this->shape.getPosition().x + this->shape.getGlobalBounds().width / 2.f - this->text.getGlobalBounds().width /2.f,
 		this->shape.getPosition().y + this->shape.getGlobalBounds().height / 2.f - this->text.getGlobalBounds().height / 2.f
@@ -35,7 +35,7 @@ Button::~Button()
 
 }
 
-const bool Button::isPressed() const
+bool Button::isPressed() const
 {
 	if (this->buttonState == BTN_ACTIVE)
 		return true;

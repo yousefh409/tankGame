@@ -18,9 +18,26 @@ public:
     virtual bool collision(Sprite* collided) override;
 
     double getDamage() const { return damage; }
+    void setDamage(double damage) { this->damage = damage; }
 };
 
 class BigBullet : public Bullet {
 public:
       BigBullet(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale);
 };
+
+class BouncingBullet : public Bullet {
+private:
+    int totalBounces;
+    sf::Clock clock;
+    sf::Time lastHit;
+public:
+      BouncingBullet(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale);
+      bool collision(Sprite* collided) override;
+};
+
+class LaserBullet : public Bullet {
+public:
+      LaserBullet(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale);
+};
+

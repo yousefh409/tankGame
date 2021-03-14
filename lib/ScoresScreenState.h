@@ -2,27 +2,28 @@
 #include "State.h"
 #include "Button.h"
 #include "GameState.h"
+#include "Score.h"
 
-class MainMenuState :
-	public State
+class ScoresScreenState : public State
 {
 private:
 	sf::Texture backGroundTexture;
 	sf::RectangleShape background;
 	sf::Font font;
 
-	std::map<std::string, Button*> buttons;
-    sf::Clock clock;
-    sf::Music sound;
-    sf::Time lastSoundTrigger;
+	map<std::string, Button*> buttons;
+
+	map<int, Score> highScores;
+
 	//Functions
 	void initBackGround();
 	void initFonts();
 	void initKeybinds();
 	void initButtons();
+	void initHighScores();
 public:
-	MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
-	virtual ~MainMenuState();
+	ScoresScreenState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+	virtual ~ScoresScreenState();
 
 
 	//Functions
@@ -30,8 +31,8 @@ public:
 	void updateInput();
 	void updateButtons();
 	void renderButtons(sf::RenderTarget* target = nullptr);
+	void renderScores();
 	void update();
 	void render(sf::RenderWindow* target = nullptr);
 
 };
-

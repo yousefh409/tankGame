@@ -35,7 +35,7 @@ public:
 	~Button();
 
 	//Accessors
-	const bool isPressed() const;
+	bool isPressed() const;
 
 	//Functions
 	void update(const sf::Vector2f mousePos);

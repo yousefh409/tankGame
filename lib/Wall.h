@@ -13,6 +13,6 @@ private:
 public:
     Wall(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale) : Sprite(newUrl, newPosition, newRotation, newScale) {};
 
-    virtual bool collision(Sprite* collided) override { return false; };
+    virtual bool collision(Sprite* /*collided*/) override { return false; };
 };
 
