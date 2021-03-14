@@ -77,7 +77,6 @@ void Game::updateEvents()
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) this->window->close();
 		default:;
 		}
-		//this->gameOverCheck();
 	}
 }
 
@@ -85,7 +84,7 @@ void Game::updateEvents()
 
 void Game::update()
 {
-	this->updateEvents();
+	//this->updateEvents();
 	if (!this->states.empty())
 	{
 		this->states.top()->update();
@@ -96,6 +95,7 @@ void Game::update()
 			delete this->states.top();
 			this->states.pop();
 		}
+		
 	}
 	else
 	{
@@ -112,10 +112,6 @@ void Game::render()
 	{
 		this->states.top()->render(this->window);
 	}
-
-	//this->window->draw(background);
-	//this->gameOverCheck();
-	//this->window->display();
 }
 
 void Game::run()

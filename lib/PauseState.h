@@ -1,11 +1,7 @@
 #pragma once
 #include "State.h"
 #include "Button.h"
-#include "GameState.h"
-
-
-class MainMenuState :
-	public State
+class PauseState :public State
 {
 private:
 	sf::Texture backGroundTexture;
@@ -13,18 +9,14 @@ private:
 	sf::Font font;
 
 	std::map<std::string, Button*> buttons;
-
-
-
 	//Functions
 	void initBackGround();
 	void initFonts();
 	void initKeybinds();
 	void initButtons();
 public:
-	MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
-	virtual ~MainMenuState();
-
+	PauseState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+	virtual ~PauseState();
 
 	//Functions
 	void endState();
@@ -33,6 +25,5 @@ public:
 	void renderButtons(sf::RenderTarget* target = nullptr);
 	void update();
 	void render(sf::RenderWindow* target = nullptr);
-
 };
 

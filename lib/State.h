@@ -46,6 +46,7 @@ public:
 
 	//functions
 	const bool& getQuit() const;
+	void changeQuitToFalse();
 	virtual void update() = 0;
 	virtual void updateInput() = 0;
 	virtual void updateMousePositions();

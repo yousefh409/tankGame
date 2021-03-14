@@ -17,6 +17,11 @@ const bool& State::getQuit() const
 	return this->quit;
 }
 
+void State::changeQuitToFalse()
+{
+	this->quit = false;
+}
+
 void State::updateMousePositions()
 {
 	this->mousePosScreen = sf::Mouse::getPosition();

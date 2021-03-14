@@ -1,6 +1,10 @@
 #pragma once
 
 #include "State.h"
+#include "MainMenuState.h"
+#include "PauseState.h"
+
+
 
 class GameState :public State
 {

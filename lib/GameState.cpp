@@ -222,8 +222,12 @@ void GameState::endState()
 
 void GameState::updateInput()
 {
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)) 
+	{
+		this->states->push(new PauseState(this->window, this->supportedKeys, this->states));
+	}
 	this->checkForQuit();
-	this->gameOverCheck();
+	//this->gameOverCheck();
 }
 
 void GameState::update()
