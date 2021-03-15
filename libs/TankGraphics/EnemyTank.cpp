@@ -1,14 +1,5 @@
 #ifndef ENEMYTANK_CPP
 #define ENEMYTANK_CPP
-#include "SFML/Graphics.hpp"
-#include <iostream>
-#include <string>
-#include <vector>
-#include <ctime>
-#include <cstdlib>
-#include "Sprite.h"
-#include "Tank.h"
-#include "Bullet.h"
 #include "EnemyTank.h"
 
 using namespace std;
