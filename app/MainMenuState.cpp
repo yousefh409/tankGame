@@ -94,7 +94,6 @@ MainMenuState::~MainMenuState()
 
 void MainMenuState::endState()
 {
-	std::cout << "Ending MainMenuState!\n"; // Debugging
 }
 
 void MainMenuState::updateInput()

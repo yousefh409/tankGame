@@ -94,7 +94,6 @@ void Game::update()
 		this->endApplication();
 		this->window->close();
 	}
-
 }
 
 void Game::render()
@@ -112,11 +111,9 @@ void Game::run()
 	{
 		this->update();
 		this->render();
-
 	}
 }
 
 void Game::endApplication()
 {
-	std::cout << "Ending Application\n";
 }

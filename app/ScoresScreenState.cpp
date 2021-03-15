@@ -104,7 +104,6 @@ ScoresScreenState::~ScoresScreenState()
 
 void ScoresScreenState::endState()
 {
-	std::cout << "Ending ScoresScreenState!\n"; // Debugging
 }
 
 void ScoresScreenState::updateInput()

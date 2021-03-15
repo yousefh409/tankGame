@@ -76,7 +76,6 @@ InstructionScreenState::~InstructionScreenState()
 
 void InstructionScreenState::endState()
 {
-	std::cout << "Ending InstructionScreenState!\n"; // Debugging
 }
 
 void InstructionScreenState::updateInput()

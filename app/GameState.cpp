@@ -37,11 +37,16 @@ void GameState::initializeLevel()
 
 void GameState::updateWindow()
 {
-	for (auto iter = allSprites.begin(); iter != allSprites.end(); iter++) {
-		(*iter)->update(this->window, event, allSprites, clock);
+    //WE USE INDECIES RATHER THAN ITERATORS BECAUSE ITERATORS WILL BE INVALIDATED
+    // IF WE INSERT ELEMENTS INTO THE VECTOR(WHICH WILL HAPPEN)
+    unsigned allSpritesSize = allSprites.size();
+	for (unsigned i = 0; i < allSpritesSize; i++) {
+		allSprites[i]->update(this->window, event, allSprites, clock);
 	}
-	for (auto iter = enemyTanks.begin(); iter != enemyTanks.end(); iter++) {
-		iter->get()->update(this->window, event, allSprites, clock);
+
+	unsigned enemyTankSize = enemyTanks.size();
+	for (unsigned i = 0; i < enemyTankSize; i++) {
+		enemyTanks[i]->update(this->window, event, allSprites, clock);
 	}
 	for (auto iter = destroyed.begin(); iter != destroyed.end(); iter++) {
 		(*iter)->update(this->window, event, allSprites, clock);
@@ -51,46 +56,58 @@ void GameState::updateWindow()
 
 void GameState::checkCollisions()
 {
-	for (auto iter = enemyTanks.begin(); iter != enemyTanks.end(); iter++) { //Checking for collisions between all sprites and enemyTanks
-		for (auto jter = allSprites.begin() + 1; jter != allSprites.end(); jter++) {
+    bool iterCollision = false;
+    bool jterCollision = false;
+	for (auto iter = enemyTanks.begin(); iter != enemyTanks.end(); ) { //Checking for collisions between all sprites and enemyTanks
+		for (auto jter = allSprites.begin(); jter != allSprites.end();) {
 			if ((*jter)->isIntersect(iter->get())) {
-                bool iterCollision = (*iter)->collision(jter->get());
-                bool jterCollision = (*jter)->collision(iter->get());
+                iterCollision = (*iter)->collision(jter->get());
+                jterCollision = (*jter)->collision(iter->get());
                 if (jterCollision) {
 					destroyed.insert(*jter);
 					jter = allSprites.erase(jter);
-					jter--;
 					playHitSound();
+				} else {
+				    jter++;
 				}
 				if (iterCollision) {
 					destroyed.insert(*iter);
 					iter = enemyTanks.erase(iter);
-					iter--;
 					playHitSound();
 					score.incrScore(100 * (enemyTanks.size() + 1));
 					break;
 				}
+			} else {
+                jter++;
 			}
+		}
+		if (!iterCollision) {
+            iter++;
 		}
 	}
 
+    unsigned vectorLength = allSprites.size();
 	//WE USE INDECIES HERE TO MAKE THE DELETE SYNTAX EASIER
-	for (unsigned i = 0; i < allSprites.size(); i++) { //Checking for collisions between all other sprites
-		for (unsigned j = 0; j < allSprites.size(); j++) {
+	for (unsigned i = 0; i < vectorLength; i++) { //Checking for collisions between all other sprites
+		for (unsigned j = i + 1; j < vectorLength; j++) {
 			if ((allSprites[i] != allSprites[j]) && allSprites[i]->isIntersect(allSprites[j].get())) {
                 bool iterCollision = allSprites[i]->collision(allSprites[j].get());
                 bool jterCollision = allSprites[j]->collision(allSprites[i].get());
+                bool isSound = false;
 				if (jterCollision) {
 					destroyed.insert(allSprites[j]);
 					allSprites.erase(allSprites.begin() + j);
-					j++;
+					vectorLength--;
 					playHitSound();
+					isSound = true;
 				}
 				if (iterCollision) {
                     destroyed.insert(allSprites[i]);
 					allSprites.erase(allSprites.begin() + i);
-					i++;
-					playHitSound();
+                    vectorLength--;
+                    if (!isSound) {
+                        playHitSound();
+                    }
 					break;
 				}
 			}
@@ -146,7 +163,7 @@ void GameState::gameOverCheck()
         }
 	    sf::Time currentTime = clock.getElapsedTime();
         if ((currentTime - whenEnded).asSeconds() >= 3) {
-            this->endState();
+            this->quit = true;
         } else {
             drawGameOver();
         }
@@ -226,23 +243,23 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
     sound.setVolume(1.5);
 }
 
-GameState::~GameState()
-{
-}
-
 
 void GameState::endState()
 {
     if ((gameIndex == Maps::levels.size()) && (this->allSprites.front()->getHealth() > 0)) {
+        auto current = this->states->top();
         this->states->pop();
         this->states->push(new ScoresScreenState(this->window, this->supportedKeys, this->states));
+        this->states->push(current);
     } else {
+        auto current = this->states->top();
         this->states->pop();
         if (this->allSprites.front()->getHealth() > 0) {
             this->states->push(new GameState(this->window, this->supportedKeys, this->states, gameIndex + 1, false));
         } else {
              this->states->push(new GameState(this->window, this->supportedKeys, this->states, gameIndex, false));
         }
+        this->states->push(current);
     }
 	this->quit = true;
 }
@@ -266,11 +283,9 @@ void GameState::update()
 
 void GameState::render(sf::RenderWindow* target)
 {
-
     target->draw(background);
     this->gameOverCheck();
     target->display();
-
 }
 
 void GameState::writeScoreFile() {

@@ -45,7 +45,7 @@ private:
 public:
 
 	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, int newGame, bool isTestNew);
-	virtual ~GameState();
+	virtual ~GameState() = default;
 
 
 	//Functions

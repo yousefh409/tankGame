@@ -69,7 +69,6 @@ PauseState::~PauseState()
 
 void PauseState::endState()
 {
-	std::cout << "Ending PauseState!\n"; // Debugging
 }
 
 void PauseState::updateInput()
@@ -92,8 +91,12 @@ void PauseState::updateButtons()
 	}
 	if (this->buttons["EXIT_STATE"]->isPressed())
 	{
+	    auto current = this->states->top();
         this->states->pop();
+        delete this->states->top();
         this->states->pop();
+        this->states->push(current);
+        this->quit = true;
 	}
 }
 
