@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PAUSESTATE_H
+#define PAUSESTATE_H
+
 #include "State.h"
 #include "Button.h"
 #include "Maps.h"
@@ -27,3 +29,4 @@ public:
 	void update();
 	void render(sf::RenderWindow* target = nullptr);
 };
+#endif

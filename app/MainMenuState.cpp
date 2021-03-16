@@ -180,7 +180,19 @@ void MainMenuState::render(sf::RenderWindow* target)
 	}
 
 	target->draw(this->background);
+	this->drawTitle();
 	this->renderButtons(target);
 	target->display();
+}
+
+void MainMenuState::drawTitle(){
+	sf::Text writeTitle;
+	writeTitle.setFont(font);
+	writeTitle.setCharacterSize(50);
+	writeTitle.setFillColor(sf::Color::White);
+
+	writeTitle.setPosition(sf::Vector2f(400, 20));
+	writeTitle.setString("Tank Game");
+	this->window->draw(writeTitle);
 }
 

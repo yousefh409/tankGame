@@ -1,4 +1,6 @@
-#pragma once
+#ifndef TANK_H
+#define TANK_H
+
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>
@@ -23,3 +25,4 @@ public:
     virtual void fireLaser(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock, sf::RenderWindow* window);
     virtual void fireBouncing(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock, sf::RenderWindow* window);
 };
+#endif

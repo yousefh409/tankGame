@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SPRITE_H
+#define SPRITE_H
+
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>
@@ -48,3 +50,4 @@ public:
 
     virtual void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock);
 };
+#endif

@@ -222,6 +222,7 @@ void GameState::initKeybinds()
 		}
 	}
 	fin.close();
+	
 
 
 }

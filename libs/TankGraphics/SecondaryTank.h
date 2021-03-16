@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SECONDARYTANK_H
+#define SECONDARYTANK_H
+
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>
@@ -15,3 +17,4 @@ public:
     virtual bool collision(Sprite* collided) override;
     void update(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) override;
 };
+#endif

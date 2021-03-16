@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BUTTON_H
+#define BUTTON_H
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Graphics.hpp"
@@ -41,4 +42,5 @@ public:
 	void update(const sf::Vector2f mousePos);
 	void render(sf::RenderTarget* target);
 };
+#endif
 

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ENEMYTANK_H
+#define ENEMYTANK_H
+
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>
@@ -32,3 +34,4 @@ public:
 
     virtual shared_ptr<EnemyTank> clone() const { return make_shared<EnemyTank>(*this); }
 };
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef INSTRUCTIONSTATE_H
+#define INSTRUCTIONSTATE_H
+
 #include <string>
 #include <map>
 #include <vector>
@@ -45,3 +47,4 @@ public:
 	void render(sf::RenderWindow* target = nullptr);
 
 };
+#endif

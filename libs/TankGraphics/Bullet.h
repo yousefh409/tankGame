@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BULLET_H
+#define BULLET_H
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>
@@ -40,4 +41,4 @@ class LaserBullet : public Bullet {
 public:
       LaserBullet(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, string newPref);
 };
-
+#endif

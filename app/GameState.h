@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAMESTATE_H
+#define GAMESTATE_H
 
 #include "Score.h"
 #include "State.h"
@@ -56,4 +57,5 @@ public:
 	void render(sf::RenderWindow* target = nullptr);
 
 };
+#endif
 

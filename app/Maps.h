@@ -12,7 +12,7 @@
 struct GameInfo; //Forward Decleration
 
 namespace Maps {
-    static const string filePrefix = "../data/";
+    static const string filePrefix = "data/";
     static const int numLevels = 13;
 
     static const int MAP_X = 20;

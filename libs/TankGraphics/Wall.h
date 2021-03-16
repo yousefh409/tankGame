@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WALL_H
+#define WALL_H
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>
@@ -15,4 +16,5 @@ public:
 
     virtual bool collision(Sprite* /*collided*/) override { return false; };
 };
+#endif
 

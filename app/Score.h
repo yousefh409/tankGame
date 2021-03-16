@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SCORE_H
+#define SCORE_H
+
 #include <iostream>
 
 using namespace std;
@@ -23,3 +25,4 @@ public:
 
     void incrScore(unsigned increase) { levelScore += increase; }
 };
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SCORESCREENSTATE_H
+#define SCORESCREENSTATE_H
+
 #include "State.h"
 #include "Button.h"
 #include "GameState.h"
@@ -36,3 +38,4 @@ public:
 	void render(sf::RenderWindow* target = nullptr);
 
 };
+#endif

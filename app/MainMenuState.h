@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MAINMENUESTATE_H
+#define MAINMENUESTATE_H
+
 #include "State.h"
 #include "Button.h"
 #include "GameState.h"
@@ -32,6 +34,8 @@ public:
 	void renderButtons(sf::RenderTarget* target = nullptr);
 	void update();
 	void render(sf::RenderWindow* target = nullptr);
+	void drawTitle();
 
 };
+#endif
 
