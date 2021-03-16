@@ -1,6 +1,5 @@
-#ifndef MAINMENUESTATE_H
-#define MAINMENUESTATE_H
-
+#ifndef MAINMENUSTATE_H
+#define MAINMENUSTATE_H
 #include "State.h"
 #include "Button.h"
 #include "GameState.h"
@@ -35,7 +34,6 @@ public:
 	void update();
 	void render(sf::RenderWindow* target = nullptr);
 	void drawTitle();
-
 };
-#endif
+#endif // MAINMENUSTATE_H
 

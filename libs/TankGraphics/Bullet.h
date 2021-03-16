@@ -41,4 +41,4 @@ class LaserBullet : public Bullet {
 public:
       LaserBullet(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, string newPref);
 };
-#endif
+#endif // BULLET_H

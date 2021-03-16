@@ -1,6 +1,5 @@
 #ifndef PAUSESTATE_H
 #define PAUSESTATE_H
-
 #include "State.h"
 #include "Button.h"
 #include "Maps.h"

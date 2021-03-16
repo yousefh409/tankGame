@@ -1,6 +1,5 @@
 #ifndef TANK_H
 #define TANK_H
-
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>

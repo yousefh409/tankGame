@@ -35,12 +35,12 @@ void Tank::fire(vector<shared_ptr<Sprite>>& allSprites , sf::Clock& clock, doubl
 
         sf::Vector2f rotationVector = rotationToVector(rotation, 90);
 
-        sf::Vector2f bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 60, sprite.getPosition().y + rotationVector.x * -60);
+        sf::Vector2f bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 60.0f, sprite.getPosition().y + rotationVector.x * -60.0f);
         if (static_cast<int>(rotation) % 90 != 0) {
-            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 100 * (0.75 + scale), sprite.getPosition().y + rotationVector.x * -100 * (0.75 + scale));
+            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 100.0f * (0.75f + scale), sprite.getPosition().y + rotationVector.x * -100.0f * (0.75f + scale));
         }
 
-        Bullet bullet(this->getPrefix() + "bullet.png", bulletPos, sprite.getRotation() + 90, 0.08, this->getPrefix());
+        Bullet bullet(this->getPrefix() + "bullet.png", bulletPos, sprite.getRotation() + 90.0, 0.08, this->getPrefix());
         bullet.setDamage(damage);
         allSprites.push_back(make_shared<Bullet>(bullet));
     }
@@ -55,18 +55,18 @@ void Tank::fireBig(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock, sf:
 
         double bullRotation = vectorToRotation(mousePos);
         if (bullRotation < 0) {
-            bullRotation = 360 + bullRotation;
+            bullRotation = 360.0 + bullRotation;
         }
         if (mousePos.x < 0) {
-            bullRotation = bullRotation + 180;
+            bullRotation = bullRotation + 180.0;
         }
-        bullRotation = static_cast<int>(bullRotation + 90) % 360;
+        bullRotation = static_cast<int>(bullRotation + 90.0) % 360;
 
         sf::Vector2f rotationVector = rotationToVector(bullRotation, 0);
 
-        sf::Vector2f bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 60, sprite.getPosition().y + rotationVector.x * -60);
+        sf::Vector2f bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 60.0f, sprite.getPosition().y + rotationVector.x * -60.0f);
         if (static_cast<int>(bullRotation) % 90 != 0) {
-            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 100, sprite.getPosition().y + rotationVector.x * -100);
+            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 100.0f, sprite.getPosition().y + rotationVector.x * -100.0f);
         }
 
         BigBullet bullet(this->filePrefix + "bulletBig.png", bulletPos, bullRotation, 0.3, this->filePrefix);
@@ -81,12 +81,12 @@ void Tank::fireLaser(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock, s
 
         sf::Vector2f rotationVector = rotationToVector(rotation, 90);
 
-        sf::Vector2f bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 60, sprite.getPosition().y + rotationVector.x * -60);
+        sf::Vector2f bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 60.0f, sprite.getPosition().y + rotationVector.x * -60.0f);
         if (static_cast<int>(rotation) % 90 != 0) {
-            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 100 * (0.75 + scale), sprite.getPosition().y + rotationVector.x * -100 * (0.75 + scale));
+            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 100.0f * (0.75f + scale), sprite.getPosition().y + rotationVector.x * -100.0f * (0.75f + scale));
         }
 
-        LaserBullet bullet(this->filePrefix + "laserBullet.png", bulletPos, sprite.getRotation() + 90, 0.3, this->filePrefix);
+        LaserBullet bullet(this->filePrefix + "laserBullet.png", bulletPos, sprite.getRotation() + 90.0, 0.3, this->filePrefix);
         this->health -= 10;
         allSprites.push_back(make_shared<LaserBullet>(bullet));
     }
@@ -101,18 +101,18 @@ void Tank::fireBouncing(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock
 
         double bullRotation = vectorToRotation(mousePos);
         if (bullRotation < 0) {
-            bullRotation = 360 + bullRotation;
+            bullRotation = 360.0 + bullRotation;
         }
         if (mousePos.x < 0) {
-            bullRotation = bullRotation + 180;
+            bullRotation = bullRotation + 180.0;
         }
-        bullRotation = static_cast<int>(bullRotation + 90) % 360;
+        bullRotation = static_cast<int>(bullRotation + 90.0) % 360;
 
         sf::Vector2f rotationVector = rotationToVector(bullRotation, 0);
 
-        sf::Vector2f bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 60, sprite.getPosition().y + rotationVector.x * -60);
+        sf::Vector2f bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 60.0f, sprite.getPosition().y + rotationVector.x * -60.0f);
         if (static_cast<int>(bullRotation) % 90 != 0) {
-            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 80, sprite.getPosition().y + rotationVector.x * -80);
+            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 80.0f, sprite.getPosition().y + rotationVector.x * -80.0f);
         }
 
         BouncingBullet bullet(this->filePrefix + "bouncingBullet.png", bulletPos, bullRotation, 0.3, this->filePrefix);

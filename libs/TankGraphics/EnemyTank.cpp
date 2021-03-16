@@ -71,7 +71,7 @@ void EnemyTank::update(sf::RenderWindow* window, sf::Event& event, vector<shared
 
 void EnemyTank::basicUpdate(sf::RenderWindow* window, sf::Event& event, vector<shared_ptr<Sprite>>&  allSprites, sf::Clock& clock) {
     firePeriod = 2000;
-    double angle = (atan2((*allSprites.front()).getPosition().y - sprite.getPosition().y, (*allSprites.front()).getPosition().x - sprite.getPosition().x) * 180 / 3.14159265);
+    double angle = (atan2((*allSprites.front()).getPosition().y - sprite.getPosition().y, (*allSprites.front()).getPosition().x - sprite.getPosition().x) * 180.0 / 3.14159265);
     setRotation(angle);
 
     float x_pos = sprite.getPosition().x;

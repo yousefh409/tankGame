@@ -1,6 +1,5 @@
 #ifndef MAINTANK_H
 #define MAINTANK_H
-
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>

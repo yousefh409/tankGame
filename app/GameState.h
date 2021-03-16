@@ -1,6 +1,5 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
-
 #include "Score.h"
 #include "State.h"
 #include "SFML/Audio.hpp"
@@ -39,7 +38,6 @@ private:
 	void drawGameOver();
 	void writeScoreFile();
 	void drawScore();
-	void drawLevel();
 	void playHitSound();
 	//Functions
 
@@ -58,4 +56,3 @@ public:
 
 };
 #endif
-

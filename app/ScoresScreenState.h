@@ -1,6 +1,5 @@
-#ifndef SCORESCREENSTATE_H
-#define SCORESCREENSTATE_H
-
+#ifndef SCORESSCREENSTATE_H
+#define SCORESSCREENSTATE_H
 #include "State.h"
 #include "Button.h"
 #include "GameState.h"

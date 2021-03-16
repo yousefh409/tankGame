@@ -1,6 +1,5 @@
 #ifndef SECONDARYTANK_H
 #define SECONDARYTANK_H
-
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>

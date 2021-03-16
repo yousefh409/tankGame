@@ -1,6 +1,5 @@
-#ifndef INSTRUCTIONSTATE_H
-#define INSTRUCTIONSTATE_H
-
+#ifndef INSTRUCTIONSCREENSTATE_H
+#define INSTRUCTIONSCREENSTATE_H
 #include <string>
 #include <map>
 #include <vector>
@@ -45,6 +44,5 @@ public:
 	void renderInstructions();
 	void update();
 	void render(sf::RenderWindow* target = nullptr);
-
 };
 #endif

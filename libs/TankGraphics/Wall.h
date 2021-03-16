@@ -16,5 +16,4 @@ public:
 
     virtual bool collision(Sprite* /*collided*/) override { return false; };
 };
-#endif
-
+#endif // WALL_H

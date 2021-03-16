@@ -1,6 +1,7 @@
 #include "ScoresScreenState.h"
 #include "InstructionScreenState.h"
 #include "MainMenuState.h"
+#include "Button.h"
 #include <SFML/Audio.hpp>
 
 
@@ -195,4 +196,3 @@ void MainMenuState::drawTitle(){
 	writeTitle.setString("Tank Game");
 	this->window->draw(writeTitle);
 }
-

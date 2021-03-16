@@ -1,6 +1,5 @@
 #ifndef ENEMYTANK_H
 #define ENEMYTANK_H
-
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <string>
