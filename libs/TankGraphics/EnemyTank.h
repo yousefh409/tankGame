@@ -3,12 +3,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
 #include <cmath>
 #include <cstdlib>
-#include <ctime>
 #include "Sprite.h"
-#include "Bullet.h"
 #include "Tank.h"
+#include "Bullet.h"
 
 using namespace std;
 

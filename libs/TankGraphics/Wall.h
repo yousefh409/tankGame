@@ -9,7 +9,7 @@ using namespace std;
 
 class Wall : public Sprite {
 private:
-    int health; //TODO
+    int health = 100; //TODO
 public:
     Wall(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, string newPref) : Sprite(newUrl, newPosition, newRotation, newScale, newPref) {};
 

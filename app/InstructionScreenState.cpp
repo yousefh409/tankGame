@@ -143,7 +143,7 @@ void InstructionScreenState::renderInstructions() {
     text.setCharacterSize(23);
     int posY = 160;
     for (auto iter = instructionKeysOrder.begin(); iter != instructionKeysOrder.end(); iter++) {
-        text.setPosition(sf::Vector2f(330, posY));
+        text.setPosition(sf::Vector2f(330.0, static_cast<float>(posY)));
         text.setString(*iter + " => " + instructionKeys[*iter]);
 
         this->window->draw(text);
@@ -153,7 +153,7 @@ void InstructionScreenState::renderInstructions() {
     posY += 30;
     text.setFillColor(sf::Color::Red);
     for (auto iter = bulletDescrips.begin(); iter != bulletDescrips.end(); iter++) {
-        text.setPosition(sf::Vector2f(330, posY));
+        text.setPosition(sf::Vector2f(330.0, static_cast<float>(posY)));
         text.setString(iter->first + " => " + iter->second);
 
         this->window->draw(text);
@@ -168,7 +168,7 @@ void InstructionScreenState::renderInstructions() {
 void InstructionScreenState::initInstructions() {
     instructionDescription = "Your goal in this game is to defeat all the enemies in the shortest time possible";
 
-    instructionKeysOrder = {"W", "A", "S", "D", "SPACE", "LEFT CLICK", "RIGHT CLICK", "LEFT SHIFT" };
+    instructionKeysOrder = {"W", "A", "S", "D", "SPACE", "LEFT CLICK", "RIGHT CLICK", "LEFT SHIFT", "P" };
     instructionKeys["W"] = "Move up";
     instructionKeys["A"] = "Move left";
     instructionKeys["S"] = "Move down";
@@ -177,6 +177,7 @@ void InstructionScreenState::initInstructions() {
     instructionKeys["LEFT CLICK"] = "Shoot a fire ball";
     instructionKeys["RIGHT CLICK"] = "Shoot a bouncing bullet";
     instructionKeys["LEFT SHIFT"] = "Shoot a laser";
+    instructionKeys["P"] = "Pause the game";
 
     bulletDescrips["Normal Bullet"] = "Deals 10 damage to the enemy if hit";
     bulletDescrips["Fire Bullet"] = "Moves slow, but will deal 25 damage to enemy if hit";

@@ -174,7 +174,7 @@ void ScoresScreenState::renderScores() {
         sout.clear();
         sout << setw(20) << iter->second.getLevel() << setw(20) << iter->second.getScore();
         score.setString(sout.str());
-        score.setPosition(sf::Vector2f(300, 100 + scoreY));
+        score.setPosition(sf::Vector2f(300.0f, 100.0f + scoreY));
         this->window->draw(score);
         scoreY += 40;
     }
