@@ -2,4 +2,5 @@ A 0
 D 3
 W 22
 S 18
+Q 16
 Escape 36
