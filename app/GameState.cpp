@@ -52,6 +52,7 @@ void GameState::updateWindow()
 		(*iter)->update(this->window, event, allSprites, clock);
 	}
     this->drawScore();
+	this->drawLevel();
 }
 
 void GameState::checkCollisions()
@@ -305,6 +306,17 @@ void GameState::drawScore() {
     writeScore.setPosition(sf::Vector2f(10, 10));
     writeScore.setString("SCORE: " + to_string(score.getScore()));
     this->window->draw(writeScore);
+}
+
+void GameState::drawLevel(){
+	sf::Text writeLevel;
+	writeLevel.setFont(font);
+	writeLevel.setCharacterSize(50);
+	writeLevel.setFillColor(sf::Color::Green);
+
+	writeLevel.setPosition(sf::Vector2f(850, 10));
+	writeLevel.setString("Level: " + to_string(this->gameIndex));
+	this->window->draw(writeLevel);
 }
 
 void GameState::playHitSound() {

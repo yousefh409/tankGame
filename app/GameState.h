@@ -38,6 +38,7 @@ private:
 	void drawGameOver();
 	void writeScoreFile();
 	void drawScore();
+	void drawLevel();
 	void playHitSound();
 	//Functions
 
