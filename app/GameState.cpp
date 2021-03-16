@@ -152,7 +152,7 @@ void GameState::gameOverCheck()
 	}
 	else {
         if (!isEndedSet) {
-            int incrScore = 1000 - static_cast<int>(30 * this->clock.getElapsedTime().asSeconds());
+            int incrScore = 1000 - static_cast<int>(30.f * this->clock.getElapsedTime().asSeconds());
             if (incrScore < 0) { //Make sure that it is not negative
                 incrScore = 0;
             }
@@ -315,7 +315,7 @@ void GameState::drawLevel(){
 	writeLevel.setCharacterSize(50);
 	writeLevel.setFillColor(sf::Color::Green);
 
-	writeLevel.setPosition(sf::Vector2f(850, 10));
+	writeLevel.setPosition(sf::Vector2f(820, 10));
 	writeLevel.setString("Level: " + to_string(this->gameIndex));
 	this->window->draw(writeLevel);
 }
