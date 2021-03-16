@@ -58,32 +58,31 @@ void GameState::checkCollisions()
 {
     bool iterCollision = false;
     bool jterCollision = false;
-	for (auto iter = enemyTanks.begin(); iter != enemyTanks.end(); ) { //Checking for collisions between all sprites and enemyTanks
-		for (auto jter = allSprites.begin(); jter != allSprites.end();) {
-			if ((*jter)->isIntersect(iter->get())) {
-                iterCollision = (*iter)->collision(jter->get());
-                jterCollision = (*jter)->collision(iter->get());
+    //WE USE INDECIES HERE TO MAKE THE DELETE SYNTAX EASIER
+    unsigned spritesLength = allSprites.size();
+    unsigned enemyLength = enemyTanks.size();
+	for (unsigned i = 0; i < enemyLength; i++) { //Checking for collisions between all sprites and enemyTanks
+		for (unsigned j = 0; j < spritesLength; j++) {
+			if (allSprites[j]->isIntersect(enemyTanks[i].get())) {
+                iterCollision = enemyTanks[i]->collision(allSprites[j].get());
+                jterCollision = allSprites[j]->collision(enemyTanks[i].get());
                 if (jterCollision) {
-					destroyed.insert(*jter);
-					jter = allSprites.erase(jter);
+					destroyed.insert(allSprites[j]);
+					allSprites.erase(allSprites.begin() + j);
 					playHitSound();
-				} else {
-				    jter++;
+					spritesLength--;
 				}
 				if (iterCollision) {
-					destroyed.insert(*iter);
-					iter = enemyTanks.erase(iter);
+					destroyed.insert(enemyTanks[i]);
+					enemyTanks.erase(enemyTanks.begin() + i);
 					playHitSound();
 					score.incrScore(100 * (enemyTanks.size() + 1));
+					enemyLength--;
 					break;
 				}
-			} else {
-                jter++;
 			}
 		}
-		if (!iterCollision) {
-            iter++;
-		}
+
 	}
 
     unsigned vectorLength = allSprites.size();
