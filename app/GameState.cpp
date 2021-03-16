@@ -234,7 +234,7 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
 	if (isTest) {
         this->allSprites.push_back(make_shared<SecondaryTank>(SecondaryTank(Maps::filePrefix + "tank.png", sf::Vector2f(1024.0f / 5, 768.0f / 5), 0, 0.4, Maps::filePrefix)));
 	}
-	this->allSprites.push_back(make_shared<MainTank>(MainTank(Maps::filePrefix + "tank.png", sf::Vector2f(1024.0f / 2, 768.0f / 2), 0, 0.4, Maps::filePrefix)));
+	this->allSprites.push_back(make_shared<MainTank>(MainTank(Maps::filePrefix + "tank.png", Maps::mainTankPositions[gameIndex], 0, 0.4, Maps::filePrefix)));
 	this->initializeLevel();
     font.loadFromFile(Maps::filePrefix + "Unique.ttf");
 
