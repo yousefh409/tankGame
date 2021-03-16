@@ -3,7 +3,7 @@
 //Intitializer Functions
 void Game::initWindow()
 {
-	this->window = new sf::RenderWindow(sf::VideoMode(1024, 768), "Tank Game", sf::Style::Close);
+	this->window = new sf::RenderWindow(sf::VideoMode(990, 768), "Tank Game", sf::Style::Close);
 }
 
 

@@ -36,7 +36,7 @@ bool Bullet::collision(Sprite* /*collided*/) {
 }
 
 BigBullet::BigBullet(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, string newPref) : Bullet(newUrl, newPosition, newRotation, newScale, newPref) {
-    damage = 25;
+    damage = 30;
     speedPeriod = 60;
 }
 
@@ -48,8 +48,8 @@ LaserBullet::LaserBullet(string newUrl, sf::Vector2f newPosition, double newRota
 
 BouncingBullet::BouncingBullet(string newUrl, sf::Vector2f newPosition, double newRotation, double newScale, string newPref) : Bullet(newUrl, newPosition, newRotation, newScale, newPref) {
     totalBounces = 0;
-    damage = 20;
-    speedPeriod = 60;
+    damage = 10;
+    speedPeriod = 75;
     lastHit = clock.getElapsedTime();
 }
 

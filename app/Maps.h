@@ -69,7 +69,7 @@ struct GameInfo {
     array<array<int, Maps::MAP_Y>, Maps::MAP_X> mapArray;
 
     GameInfo(vector<shared_ptr<EnemyTank>> e, array<array<int, Maps::MAP_Y>, Maps::MAP_X> m) : enemyTanks(e), mapArray(m) {}
-    GameInfo() = default;
+    GameInfo(): enemyTanks{}, mapArray{} {};
 };
 #endif
 

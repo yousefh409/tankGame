@@ -10,7 +10,7 @@
 
 
 
-vector<shared_ptr<EnemyTank>> Maps::mapOneEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-1.png", sf::Vector2f(1024.0f/1.8f, 768.0f/1.3f), 180, 0.4, 2.2, 50, Maps::filePrefix)) };
+vector<shared_ptr<EnemyTank>> Maps::mapOneEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-1.png", sf::Vector2f(1024.0f/1.8f, 768.0f/1.3f), 180, 0.4, 2.2, 70, Maps::filePrefix)) };
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapOne = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -32,7 +32,7 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapOne = {{{1,1,1,1,1,1,1,1,1,
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,1,1,1,1,1,1,1,1,1,1,1 } }};
 
-vector<shared_ptr<EnemyTank>> Maps::mapTwoEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-stationary.png", sf::Vector2f(1024.0f/1.8f, 768.0f/1.3f), 180, 0.4, 2.2, 50, Maps::filePrefix)) };
+vector<shared_ptr<EnemyTank>> Maps::mapTwoEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-stationary.png", sf::Vector2f(1024.0f/1.8f, 768.0f/1.3f), 180, 0.4, 2.2, 70, Maps::filePrefix)) };
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapTwo = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -54,7 +54,7 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapTwo = {{{1,1,1,1,1,1,1,1,1,
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,1,1,1,1,1,1,1,1,1,1,1 } }};
 
-vector<shared_ptr<EnemyTank>> Maps::mapThreeEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/1.8f, 768.0f/1.3f), 180, 0.4, 2.2, 50, Maps::filePrefix)) };
+vector<shared_ptr<EnemyTank>> Maps::mapThreeEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/1.8f, 768.0f/1.3f), 180, 0.4, 2.2, 70, Maps::filePrefix)) };
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapThree = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -77,7 +77,7 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapThree = {{{1,1,1,1,1,1,1,1,
                                                              {1,1,1,1,1,1,1,1,1,1,1,1 } }};
 
 
-vector<shared_ptr<EnemyTank>> Maps::mapFourEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/1.8f, 768.0f/1.3f), 180, 0.4, 2.2, 50, Maps::filePrefix)) };
+vector<shared_ptr<EnemyTank>> Maps::mapFourEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/1.8f, 768.0f/1.3f), 180, 0.4, 2.2, 70, Maps::filePrefix)) };
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapFour = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -102,7 +102,7 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapFour = {{{1,1,1,1,1,1,1,1,1
 
 
 
-vector<shared_ptr<EnemyTank>> Maps::mapFiveEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-1.png", sf::Vector2f(1024.0f/3.0f, 768.0f/3.0f), 180, 0.4, 2.2, 50, Maps::filePrefix)) };
+vector<shared_ptr<EnemyTank>> Maps::mapFiveEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-1.png", sf::Vector2f(1024.0f/3.0f, 768.0f/3.0f), 180, 0.4, 2.2, 70, Maps::filePrefix)) };
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapFive = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -127,8 +127,8 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapFive = {{{1,1,1,1,1,1,1,1,1
 
 
 
-vector<shared_ptr<EnemyTank>> Maps::mapSixEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-1.png", sf::Vector2f(1024.0f/4.1f, 768.0f/4.1f), 0, 0.4, 2, 50, Maps::filePrefix)),
-                                                         make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-2.png", sf::Vector2f(1024.0f/1.7f, 768.0f/1.2f), 180, 0.4, 2.2, 50, Maps::filePrefix)) };
+vector<shared_ptr<EnemyTank>> Maps::mapSixEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-1.png", sf::Vector2f(1024.0f/3.5f, 768.0f/3.8f), 0, 0.4, 2, 70, Maps::filePrefix)),
+                                                         make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-2.png", sf::Vector2f(1024.0f/2.2f, 768.0f/2.0f), 180, 0.4, 2.2, 70, Maps::filePrefix)) };
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapSix = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -150,8 +150,8 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapSix = {{{1,1,1,1,1,1,1,1,1,
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,1,1,1,1,1,1,1,1,1,1,1 } }};
 
-vector<shared_ptr<EnemyTank>> Maps::mapSevenEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-1.png", sf::Vector2f(1024.0f/3.0f, 768.0f/2.0f), 0, 0.4, 2, 50, Maps::filePrefix)),
-                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/2.0f, 768.0f/3.0f), 180, 0.4, 2.2, 50, Maps::filePrefix)) };
+vector<shared_ptr<EnemyTank>> Maps::mapSevenEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-1.png", sf::Vector2f(1024.0f/3.0f, 768.0f/2.0f), 0, 0.4, 2, 60, Maps::filePrefix)),
+                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/2.0f, 768.0f/3.0f), 180, 0.4, 2.2, 60, Maps::filePrefix)) };
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapSeven = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -173,8 +173,8 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapSeven = {{{1,1,1,1,1,1,1,1,
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,1,1,1,1,1,1,1,1,1,1,1 } }};
 
-vector<shared_ptr<EnemyTank>> Maps::mapEightEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-2.png", sf::Vector2f(1024.0f/1.5f, 768.0f/2.0f), 0, 0.4, 2, 50, Maps::filePrefix)),
-                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/3.2f, 768.0f/2.0f), 180, 0.4, 2.2, 50, Maps::filePrefix)),};
+vector<shared_ptr<EnemyTank>> Maps::mapEightEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-basic-2.png", sf::Vector2f(1024.0f/1.5f, 768.0f/2.0f), 0, 0.4, 2, 80, Maps::filePrefix)),
+                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/3.4f, 768.0f/2.0f), 180, 0.4, 2.2, 80, Maps::filePrefix)),};
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapEight = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -197,8 +197,8 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapEight = {{{1,1,1,1,1,1,1,1,
                                                              {1,1,1,1,1,1,1,1,1,1,1,1 } }};
 
 
-vector<shared_ptr<EnemyTank>> Maps::mapNineEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/1.7f, 768.0f/2.0f), 0, 0.4, 2, 50, Maps::filePrefix)),
-                                                          make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/2.0f, 768.0f/1.7f), 180, 0.4, 2.2, 50, Maps::filePrefix)),};
+vector<shared_ptr<EnemyTank>> Maps::mapNineEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/1.7f, 768.0f/2.0f), 0, 0.4, 2, 80, Maps::filePrefix)),
+                                                          make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/2.0f, 768.0f/1.7f), 180, 0.4, 2.2, 80, Maps::filePrefix)),};
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapNine = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,1,0,0,0,0,0,0,0,1 },
@@ -221,8 +221,8 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapNine = {{{1,1,1,1,1,1,1,1,1
                                                              {1,1,1,1,1,1,1,1,1,1,1,1 } }};
 
 
-vector<shared_ptr<EnemyTank>> Maps::mapTenEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/10.0f, 768.0f/10.0f), 0, 0.4, 2, 50, Maps::filePrefix)),
-                                                         make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/1.3f, 768.0f/1.3f), 180, 0.4, 2.2, 50, Maps::filePrefix)),};
+vector<shared_ptr<EnemyTank>> Maps::mapTenEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/10.0f, 768.0f/10.0f), 0, 0.4, 2, 80, Maps::filePrefix)),
+                                                         make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/1.2f, 768.0f/1.2f), 180, 0.4, 2.2, 80, Maps::filePrefix)),};
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapTen = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -233,7 +233,7 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapTen = {{{1,1,1,1,1,1,1,1,1,
                                                              {1,0,0,1,0,0,0,0,1,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
-                                                             {1,0,0,0,0,1,1,0,0,0,0,1 },
+                                                             {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,1,0,0,0,0,1,0,0,1 },
@@ -245,9 +245,9 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapTen = {{{1,1,1,1,1,1,1,1,1,
                                                              {1,1,1,1,1,1,1,1,1,1,1,1 } }};
 
 
-vector<shared_ptr<EnemyTank>> Maps::mapElevenEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/10.0f, 768.0f/10.0f), 0, 0.4, 2, 50, Maps::filePrefix)),
-                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/1.3f, 768.0f/1.3f), 180, 0.4, 2.2, 50, Maps::filePrefix)),
-                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-stationary.png", sf::Vector2f(1024.0f/2.0f, 768.0f/2.0f), 180, 0.4, 2.2, 50, Maps::filePrefix)),};
+vector<shared_ptr<EnemyTank>> Maps::mapElevenEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/10.0f, 768.0f/10.0f), 0, 0.4, 2, 80, Maps::filePrefix)),
+                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-hard.png", sf::Vector2f(1024.0f/1.3f, 768.0f/1.3f), 180, 0.4, 2.2, 80, Maps::filePrefix)),
+                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-stationary.png", sf::Vector2f(1024.0f/2.0f, 768.0f/2.0f), 180, 0.4, 2.2, 80, Maps::filePrefix)),};
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapEleven = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -270,8 +270,8 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapEleven = {{{1,1,1,1,1,1,1,1
                                                              {1,1,1,1,1,1,1,1,1,1,1,1 } }};
 
 
-vector<shared_ptr<EnemyTank>> Maps::mapTwelveEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/10.0f, 768.0f/10.0f), 0, 0.4, 2, 50, Maps::filePrefix)),
-                                                            make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/2.0f, 768.0f/2.0f), 180, 0.4, 2.2, 50, Maps::filePrefix)),};
+vector<shared_ptr<EnemyTank>> Maps::mapTwelveEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/10.0f, 768.0f/10.0f), 0, 0.4, 2, 80, Maps::filePrefix)),
+                                                            make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/2.4f, 768.0f/2.4f), 180, 0.4, 2.2, 80, Maps::filePrefix)),};
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapTwelve = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -294,20 +294,20 @@ array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapTwelve = {{{1,1,1,1,1,1,1,1
                                                              {1,1,1,1,1,1,1,1,1,1,1,1 } }};
 
 
-vector<shared_ptr<EnemyTank>> Maps::mapThirteenEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/10.0f, 768.0f/10.0f), 0, 0.4, 2, 50, Maps::filePrefix)),
-                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/10.0f, 768.0f/2.0f), 180, 0.4, 2.2, 50, Maps::filePrefix)),
-                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-stationary.png", sf::Vector2f(1024.0f/2.0f, 768.0f/2.0f), 180, 0.4, 2.2, 50, Maps::filePrefix)),};
+vector<shared_ptr<EnemyTank>> Maps::mapThirteenEnemyTanks = { make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/10.0f, 768.0f/10.0f), 0, 0.4, 2, 100, Maps::filePrefix)),
+                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/10.0f, 768.0f/2.0f), 180, 0.4, 2.2, 100, Maps::filePrefix)),
+                                                           make_shared<EnemyTank>(EnemyTank(Maps::filePrefix + "enemyTank-boss.png", sf::Vector2f(1024.0f/2.4f, 768.0f/2.4f), 180, 0.4, 2.2, 100, Maps::filePrefix)),};
 array<array<int, Maps::MAP_Y>, Maps::MAP_X> Maps::mapThirteen = {{{1,1,1,1,1,1,1,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,1,0,0,1 },
                                                              {1,0,0,0,1,0,0,0,1,0,0,1 },
-                                                             {1,0,0,0,0,0,0,0,1,0,0,1 },
-                                                             {1,0,0,0,0,0,0,0,0,0,0,1 },
-                                                             {1,1,1,1,1,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
-                                                             {1,0,0,0,0,0,1,1,1,1,1,1 },
+                                                             {1,1,1,1,0,0,0,0,0,0,0,1 },
+                                                             {1,0,0,0,0,0,0,0,0,0,0,1 },
+                                                             {1,0,0,0,0,0,0,0,0,0,0,1 },
+                                                             {1,0,0,0,0,0,0,1,1,1,1,1 },
                                                              {1,0,0,0,0,0,1,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
                                                              {1,0,0,0,0,0,0,0,0,0,0,1 },
@@ -329,9 +329,9 @@ map<int, GameInfo> Maps::levels = {{1, GameInfo(Maps::mapOneEnemyTanks, Maps::ma
                                    {8, GameInfo(Maps::mapEightEnemyTanks, Maps::mapEight)},
                                    {9, GameInfo(Maps::mapNineEnemyTanks, Maps::mapNine)},
                                    {10, GameInfo(Maps::mapTenEnemyTanks, Maps::mapTen)},
-                                   {11, GameInfo(Maps::mapTenEnemyTanks, Maps::mapEleven)},
-                                   {12, GameInfo(Maps::mapTenEnemyTanks, Maps::mapTwelve)},
-                                   {13, GameInfo(Maps::mapTenEnemyTanks, Maps::mapThirteen)},};
+                                   {11, GameInfo(Maps::mapElevenEnemyTanks, Maps::mapEleven)},
+                                   {12, GameInfo(Maps::mapTwelveEnemyTanks, Maps::mapTwelve)},
+                                   {13, GameInfo(Maps::mapThirteenEnemyTanks, Maps::mapThirteen)},};
 map<int, sf::Vector2f> Maps::mainTankPositions = {
                                                   {1, sf::Vector2f(1024.0f/2.0f, 768.0f/2.0f)},
                                                   {2, sf::Vector2f(1024.0f/2.0f, 768.0f/2.0f)},

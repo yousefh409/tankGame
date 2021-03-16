@@ -159,7 +159,7 @@ void EnemyTank::bossUpdate(sf::RenderWindow* window, sf::Event& event, vector<sh
         setPosition(sf::Vector2f(rand() % 700, rand() % 800), allSprites, true);
     }
 
-    fire(allSprites, clock, 2);
+    fire(allSprites, clock, 4);
     Tank::update(window, event, allSprites, clock);
     window->draw(sprite);
 }

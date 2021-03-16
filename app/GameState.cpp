@@ -5,7 +5,7 @@
 #include "MainMenuState.h"
 #include "PauseState.h"
 
-
+//
 using namespace std;
 
 void GameState::initBackground()
@@ -23,7 +23,7 @@ void GameState::initializeLevel()
 		{
 			if (Maps::levels[gameIndex].mapArray[i][j] == 1)
 			{
-				Wall wall(Maps::filePrefix + "border.png", sf::Vector2f(i * 50.0f, j * 70.0f), 0, 0.13, Maps::filePrefix);
+				Wall wall(Maps::filePrefix + "border.png", sf::Vector2f(i * 50.0f, j * 70.0f), 0, 0.16, Maps::filePrefix);
 				allSprites.push_back(make_shared<Wall>(wall));
 			}
 		}
@@ -152,8 +152,8 @@ void GameState::gameOverCheck()
 	}
 	else {
         if (!isEndedSet) {
-            int incrScore = 1000 - (30 * this->clock.getElapsedTime().asSeconds());
-            if (incrScore < 0.0f) { //Make sure that it is not negative
+            int incrScore = 1000 - static_cast<int>(30 * this->clock.getElapsedTime().asSeconds());
+            if (incrScore < 0) { //Make sure that it is not negative
                 incrScore = 0;
             }
             score.incrScore(incrScore);
@@ -305,7 +305,7 @@ void GameState::drawScore() {
     writeScore.setFillColor(sf::Color::Green);
 
     writeScore.setPosition(sf::Vector2f(10, 10));
-    writeScore.setString("SCORE: " + to_string(score.getScore()));
+    writeScore.setString("LEVEL " + to_string(gameIndex) + " SCORE: " + to_string(score.getScore()));
     this->window->draw(writeScore);
 }
 

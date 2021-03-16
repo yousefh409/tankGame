@@ -66,7 +66,7 @@ void Tank::fireBig(vector<shared_ptr<Sprite>>& allSprites, sf::Clock& clock, sf:
 
         sf::Vector2f bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 60, sprite.getPosition().y + rotationVector.x * -60);
         if (static_cast<int>(bullRotation) % 90 != 0) {
-            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 80, sprite.getPosition().y + rotationVector.x * -80);
+            bulletPos = sf::Vector2f(sprite.getPosition().x + rotationVector.y * 100, sprite.getPosition().y + rotationVector.x * -100);
         }
 
         BigBullet bullet(this->filePrefix + "bulletBig.png", bulletPos, bullRotation, 0.3, this->filePrefix);
