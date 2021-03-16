@@ -30,12 +30,6 @@ private:
 
 	//Intitializer Functions
 	void initWindow();
-	void initializeLevel();
-	void updateWindow();
-	void checkCollisions();
-	void removeDestroyed();
-	bool gameOver();
-	void drawGameOver();
 	void initKeys();
 	void initState(); //pushes a state
 
