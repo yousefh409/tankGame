@@ -23,7 +23,7 @@ void GameState::initializeLevel()
 		{
 			if (Maps::levels[gameIndex].mapArray[i][j] == 1)
 			{
-				Wall wall(Maps::filePrefix + "border.png", sf::Vector2f(i * 50.0f, j * 70.0f), 0, 0.13, Maps::filePrefix);
+				Wall wall(Maps::filePrefix + "border.png", sf::Vector2f(i * 50.0f, j * 70.0f), 0, 0.16, Maps::filePrefix);
 				allSprites.push_back(make_shared<Wall>(wall));
 			}
 		}

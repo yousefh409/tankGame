@@ -180,8 +180,8 @@ void InstructionScreenState::initInstructions() {
     instructionKeys["P"] = "Pause the game";
 
     bulletDescrips["Normal Bullet"] = "Deals 10 damage to the enemy if hit";
-    bulletDescrips["Fire Bullet"] = "Moves slow, but will deal 25 damage to enemy if hit";
-    bulletDescrips["Bouncing Bullet"] = "Bounces two times, will deal 20 damage if hit";
+    bulletDescrips["Fire Bullet"] = "Moves slow, but will deal 30 damage to enemy if hit";
+    bulletDescrips["Bouncing Bullet"] = "Bounces two times, will deal 10 damage if hit";
     bulletDescrips["Laser Bullet"] = "Deal 40 damage to enemies, and 10 damage to self";
 }
 
