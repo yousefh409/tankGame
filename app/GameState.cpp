@@ -5,7 +5,7 @@
 #include "MainMenuState.h"
 #include "PauseState.h"
 
-
+//
 using namespace std;
 
 void GameState::initBackground()
@@ -151,8 +151,8 @@ void GameState::gameOverCheck()
 	}
 	else {
         if (!isEndedSet) {
-            int incrScore = 1000 - (30 * this->clock.getElapsedTime().asSeconds());
-            if (incrScore < 0.0f) { //Make sure that it is not negative
+            int incrScore = 1000 - static_cast<int>(30 * this->clock.getElapsedTime().asSeconds());
+            if (incrScore < 0) { //Make sure that it is not negative
                 incrScore = 0;
             }
             score.incrScore(incrScore);
@@ -303,7 +303,7 @@ void GameState::drawScore() {
     writeScore.setFillColor(sf::Color::Green);
 
     writeScore.setPosition(sf::Vector2f(10, 10));
-    writeScore.setString("SCORE: " + to_string(score.getScore()));
+    writeScore.setString("LEVEL " + to_string(gameIndex) + " SCORE: " + to_string(score.getScore()));
     this->window->draw(writeScore);
 }
 

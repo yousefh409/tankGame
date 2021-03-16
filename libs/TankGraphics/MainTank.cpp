@@ -70,6 +70,10 @@ void MainTank::update(sf::RenderWindow* window, sf::Event& event, vector<shared_
 
 
 bool MainTank::collision(Sprite* collided) {
+
+    numFrames = 4;
+    currentFrame = 0;
+
     Bullet* bullet = dynamic_cast<Bullet*>(collided);
     sf::Time currentTime = clock.getElapsedTime();
     if (bullet && (currentTime - lastHit).asMilliseconds() > 100) {
