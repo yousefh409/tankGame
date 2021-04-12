@@ -11,3 +11,5 @@ Group members are:
 
 # Compile Instructions
 To compile this project, follow the instructions provided in `Group Project Compile Instructions.pdf`
+
+<img src="https://github.com/yousefh409/tankGame/blob/master/frontScreen.PNG"/>
